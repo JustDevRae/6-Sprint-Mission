@@ -1,0 +1,61 @@
+.articleContainer{
+  margin: 24px auto 16px;
+}
+
+.articleHeader {
+  width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.articleTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  color: #111827;
+}
+
+.articleContentBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.likeCountWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.bestArticleList {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.bestArticleWrapper {
+  position: relative;
+  width: 384px;
+  height: 169px;
+  border-radius: 8px;
+  background-color: #f9fafb;
+}
+
+.bestArticleContent {
+  position: absolute;
+  top: 46px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100px;
+  width: 330px;
+}
+
+.bestArticleBottomLeft{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
