@@ -8,26 +8,11 @@ import Profile from "@/assets/images/icons/ic_profile.svg";
 import Sort from "@/assets/images/icons/ic_sort.svg";
 import { useEffect, useState } from "react";
 import styles from "@/styles/boards.module.css";
-
-interface Article {
-  content: string;
-  createdAt: string;
-  id: number;
-  image: string;
-  likeCount: number;
-  title: string;
-  updatedAt: string;
-  writer: {
-    id: number;
-    nickname: string;
-  };
-}
+import { Article } from "@/types/article";
 
 export default function CommunityFeedPage() {
   const [bestArticles, setBestArticles] = useState<Article[]>([]);
   const [allArticles, setAllArticles] = useState<Article[]>([]);
-
-  
 
   async function getBestArticle() {
     const response = await axios.get("articles/?pageSize=3&orderBy=like");
@@ -54,10 +39,8 @@ export default function CommunityFeedPage() {
         <div className={styles.articleHeader}>
           <h1 className={styles.articleTitle}>베스트 게시글</h1>
         </div>
-
-        {/* container */}
         <div className={styles.bestArticleList}>
-          {bestArticles?.map((bestArticle: any) => (
+          {bestArticles?.map((bestArticle) => (
             <div key={bestArticle.id} className={styles.bestArticleWrapper}>
               <Image
                 src={Badge}
@@ -65,7 +48,6 @@ export default function CommunityFeedPage() {
                 style={{ position: "absolute", top: 0, left: 24 }}
               />
               <div className={styles.bestArticleContent}>
-                {/* content */}
                 <div className={styles.articleTitle}>{bestArticle.title}</div>
                 <div className={styles.articleContentBottom}>
                   <div className={styles.allArticleBottomLeft}>
@@ -83,7 +65,6 @@ export default function CommunityFeedPage() {
           ))}
         </div>
       </div>
-
       <div className={styles.articleContainer}>
         <div className={styles.articleHeader}>
           <h1 className={styles.articleTitle}>게시글</h1>
@@ -107,12 +88,9 @@ export default function CommunityFeedPage() {
             <Image src={Sort} alt="정렬 아이콘" />
           </button>
         </div>
-
-        {/* container */}
         <div className="allArticleList">
           {allArticles.map((allArticle) => (
             <div key={allArticle.id} className={styles.allArticleWrapper}>
-              {/* content */}
               <div className={styles.articleTitle}>{allArticle.title}</div>
               <div className={styles.articleContentBottom}>
                 <div className={styles.allArticleBottomLeft}>
@@ -120,7 +98,6 @@ export default function CommunityFeedPage() {
                   <div>{allArticle.writer.nickname}</div>
                   <div>{formatDate(allArticle.createdAt)}</div>
                 </div>
-
                 <div className={styles.likeCountWrapper}>
                   <Image src={Heart} alt="좋아요 아이콘" />
                   <div>{allArticle.likeCount}</div>
