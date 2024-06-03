@@ -13,10 +13,9 @@ export default function AllArticleSection() {
   const [allArticles, setAllArticles] = useState<Article[]>([]);
 
   async function getAllArticle() {
-    const response = await axios.get("articles");
+    const response = await axios.get("/articles");
     const nextAllArticle = response.data.list ?? [];
     setAllArticles(nextAllArticle);
-    console.log(nextAllArticle);
   }
 
   useEffect(() => {
