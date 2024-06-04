@@ -8,8 +8,8 @@ export async function getServerSideProps() {
     "articles/?pageSize=3&orderBy=like"
   );
   const allArticleResponse = await axios.get("articles/?orderBy=like");
-  const bestArticlesData = besrtArticleResponse.data.list ?? [];
-  const allArticlesData = allArticleResponse.data.list ?? [];
+  const bestArticlesData = besrtArticleResponse.data?.list ?? [];
+  const allArticlesData = allArticleResponse.data?.list ?? [];
   return {
     props: {
       initBestArticles: bestArticlesData,
