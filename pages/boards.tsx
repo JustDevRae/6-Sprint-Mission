@@ -4,18 +4,23 @@ import BestArticleSection from "@/components/BestArticleSection";
 import AllArticleSection from "@/components/AllArticleSection";
 
 export async function getServerSideProps() {
-  const response = await axios.get("articles/?pageSize=3&orderBy=like");
-  const articles = response.data.list ?? [];
+  const besrtArticleResponse = await axios.get(
+    "articles/?pageSize=3&orderBy=like"
+  );
+  const allArticleResponse = await axios.get("articles/?orderBy=like");
+  const bestArticles = besrtArticleResponse.data.list ?? [];
+  const allArticles = allArticleResponse.data.list ?? [];
   return {
     props: {
-      initArticles: articles,
+      initBestArticles: bestArticles,
+      initAllArticles: allArticles,
     },
   };
 }
 
-export default function CommunityFeedPage({ initArticles }: any) {
+export default function CommunityFeedPage({ initBestArticles, initAllArticles }: any) {
   const [pageSize, setPageSize] = useState(3);
-  const [articles, setArticles] = useState(initArticles);
+  const [articles, setArticles] = useState(initBestArticles);
 
   const getPageSize = () => {
     const width = window.innerWidth;
@@ -55,8 +60,8 @@ export default function CommunityFeedPage({ initArticles }: any) {
 
   return (
     <>
-      <BestArticleSection articles={articles} />
-      <AllArticleSection />
+      <BestArticleSection bestArticles={initBestArticles} />
+      <AllArticleSection allArticles={initAllArticles} />
     </>
   );
 }

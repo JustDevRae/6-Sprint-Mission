@@ -1,26 +1,14 @@
-import axios from "@/lib/axios";
 import Image from "next/image";
 import formatDate from "@/util/formatDate";
 import Heart from "@/assets/images/icons/ic_heart.svg";
 import Search from "@/assets/images/icons/ic_search.svg";
 import Profile from "@/assets/images/icons/ic_profile.svg";
 import Sort from "@/assets/images/icons/ic_sort.svg";
-import { useEffect, useState } from "react";
 import styles from "@/components/AllArticleSection.module.css";
 import { Article } from "@/types/article";
 
-export default function AllArticleSection() {
-  const [allArticles, setAllArticles] = useState<Article[]>([]);
+export default function AllArticleSection({ allArticles }: any) {
 
-  async function getAllArticle() {
-    const response = await axios.get("/articles");
-    const nextAllArticle = response.data.list ?? [];
-    setAllArticles(nextAllArticle);
-  }
-
-  useEffect(() => {
-    getAllArticle();
-  }, []);
   return (
     <>
       <div className={styles.articleContainer}>
@@ -47,7 +35,7 @@ export default function AllArticleSection() {
           </button>
         </div>
         <div className="allArticleList">
-          {allArticles.map((allArticle) => (
+          {allArticles.map((allArticle: any) => (
             <div key={allArticle.id} className={styles.allArticleWrapper}>
               <div className={styles.articleTitle}>{allArticle.title}</div>
               <div className={styles.articleContentBottom}>

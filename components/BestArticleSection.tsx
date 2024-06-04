@@ -7,7 +7,7 @@ import styles from "@/components/BestArticleSection.module.css";
 
 
 
-export default function BestArticleSection({ articles }: any) {
+export default function BestArticleSection({ bestArticles }: any) {
   return (
     <>
       <div className={styles.articleContainer}>
@@ -15,25 +15,25 @@ export default function BestArticleSection({ articles }: any) {
           <h1 className={styles.articleTitle}>베스트 게시글</h1>
         </div>
         <div className={styles.bestArticleList}>
-          {articles?.map((article: any) => (
-            <div key={article.id} className={styles.bestArticleWrapper}>
+          {bestArticles?.map((bestArticle: any) => (
+            <div key={bestArticle.id} className={styles.bestArticleWrapper}>
               <Image
                 src={Badge}
                 alt="베스트게시글 뱃지"
                 style={{ position: "absolute", top: 0, left: 24 }}
               />
               <div className={styles.bestArticleContent}>
-                <div className={styles.articleTitle}>{article.title}</div>
+                <div className={styles.articleTitle}>{bestArticle.title}</div>
                 <div className={styles.articleContentBottom}>
                   <div className={styles.bestArticleBottomLeft}>
-                    {article.writer.nickname}
+                    {bestArticle.writer.nickname}
 
                     <div className={styles.likeCountWrapper}>
                       <Image src={Heart} alt="좋아요 아이콘" />
-                      {article.likeCount}
+                      {bestArticle.likeCount}
                     </div>
                   </div>
-                  <div>{formatDate(article.createdAt)}</div>
+                  <div>{formatDate(bestArticle.createdAt)}</div>
                 </div>
               </div>
             </div>
