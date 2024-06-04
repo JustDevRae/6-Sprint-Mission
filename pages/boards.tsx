@@ -20,7 +20,9 @@ export async function getServerSideProps() {
 
 export default function CommunityFeedPage({ initBestArticles, initAllArticles }: any) {
   const [pageSize, setPageSize] = useState(3);
-  const [articles, setArticles] = useState(initBestArticles);
+  const [bestArticles, setBestArticles] = useState(initBestArticles);
+  const [allArticles, setAllArticles] = useState(initAllArticles);
+  const [orderBy, setOrderBy] = useState("recent");
 
   const getPageSize = () => {
     const width = window.innerWidth;
@@ -32,6 +34,10 @@ export default function CommunityFeedPage({ initBestArticles, initAllArticles }:
       return 3;
     }
   };
+
+  const handleSortSeclection = (selectOrder: string) => {
+    setOrderBy(selectOrder);
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -48,20 +54,34 @@ export default function CommunityFeedPage({ initBestArticles, initAllArticles }:
   }, []);
 
   useEffect(() => {
-    const fetchArticles = async () => {
+    const fetchBestArticlesCount = async () => {
       const response = await axios.get(
         `articles/?pageSize=${pageSize}&orderBy=like`
       );
-      setArticles(response.data.list ?? []);
+      setBestArticles(response.data.list ?? []);
     };
 
-    fetchArticles();
+    fetchBestArticlesCount();
   }, [pageSize]);
+
+  useEffect(() => {
+    const fetchSortedArticle = async () => {
+      const response = await axios.get(
+        `articles/?orderBy=${orderBy}`
+      );
+      setAllArticles(response.data.list ?? []);
+    };
+
+    fetchSortedArticle();
+  }, [orderBy]);
 
   return (
     <>
-      <BestArticleSection bestArticles={initBestArticles} />
-      <AllArticleSection allArticles={initAllArticles} />
+      <BestArticleSection bestArticles={bestArticles} />
+      <AllArticleSection
+        allArticles={allArticles}
+        onSortSelection={handleSortSeclection}
+      />
     </>
   );
 }

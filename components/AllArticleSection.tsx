@@ -6,9 +6,9 @@ import Profile from "@/assets/images/icons/ic_profile.svg";
 import Sort from "@/assets/images/icons/ic_sort.svg";
 import styles from "@/components/AllArticleSection.module.css";
 import { Article } from "@/types/article";
+import DropDownButton from "./DropDownButton";
 
-export default function AllArticleSection({ allArticles }: any) {
-
+export default function AllArticleSection({ allArticles, onSortSelection }: any) {
   return (
     <>
       <div className={styles.articleContainer}>
@@ -29,10 +29,7 @@ export default function AllArticleSection({ allArticles }: any) {
               className={styles.searchInput}
             />
           </div>
-          <button className={styles.sortButton}>
-            최신순
-            <Image src={Sort} alt="정렬 아이콘" />
-          </button>
+          <DropDownButton onSortSelection={onSortSelection} />
         </div>
         <div className="allArticleList">
           {allArticles.map((allArticle: any) => (
