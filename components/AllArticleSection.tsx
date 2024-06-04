@@ -1,14 +1,17 @@
 import Image from "next/image";
 import formatDate from "@/util/formatDate";
 import Heart from "@/assets/images/icons/ic_heart.svg";
-import Search from "@/assets/images/icons/ic_search.svg";
 import Profile from "@/assets/images/icons/ic_profile.svg";
-import Sort from "@/assets/images/icons/ic_sort.svg";
 import styles from "@/components/AllArticleSection.module.css";
 import { Article } from "@/types/article";
 import DropDownButton from "./DropDownButton";
+import SearchForm from "./SearchForm";
 
-export default function AllArticleSection({ allArticles, onSortSelection }: any) {
+export default function AllArticleSection({
+  allArticles,
+  onSortSelection,
+  onInputChange,
+}: any) {
   return (
     <>
       <div className={styles.articleContainer}>
@@ -17,18 +20,7 @@ export default function AllArticleSection({ allArticles, onSortSelection }: any)
           <button className={styles.writeButton}>글쓰기</button>
         </div>
         <div className={styles.articleHeader}>
-          <div className={styles.searchInputWrapper}>
-            <Image
-              src={Search}
-              alt="검색 아이콘"
-              style={{ position: "absolute", top: 9, left: 16 }}
-            />
-            <input
-              type="text"
-              placeholder="검색할 상품을 입력해주세요"
-              className={styles.searchInput}
-            />
-          </div>
+          <SearchForm onInputChange={onInputChange} />
           <DropDownButton onSortSelection={onSortSelection} />
         </div>
         <div className="allArticleList">

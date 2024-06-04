@@ -1,5 +1,5 @@
 import axios from "@/lib/axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import BestArticleSection from "@/components/BestArticleSection";
 import AllArticleSection from "@/components/AllArticleSection";
 
@@ -8,21 +8,25 @@ export async function getServerSideProps() {
     "articles/?pageSize=3&orderBy=like"
   );
   const allArticleResponse = await axios.get("articles/?orderBy=like");
-  const bestArticles = besrtArticleResponse.data.list ?? [];
-  const allArticles = allArticleResponse.data.list ?? [];
+  const bestArticlesData = besrtArticleResponse.data.list ?? [];
+  const allArticlesData = allArticleResponse.data.list ?? [];
   return {
     props: {
-      initBestArticles: bestArticles,
-      initAllArticles: allArticles,
+      initBestArticles: bestArticlesData,
+      initAllArticles: allArticlesData,
     },
   };
 }
 
-export default function CommunityFeedPage({ initBestArticles, initAllArticles }: any) {
+export default function CommunityFeedPage({
+  initBestArticles,
+  initAllArticles,
+}: any) {
   const [pageSize, setPageSize] = useState(3);
   const [bestArticles, setBestArticles] = useState(initBestArticles);
   const [allArticles, setAllArticles] = useState(initAllArticles);
   const [orderBy, setOrderBy] = useState("recent");
+  const [inputValue, setInputValue] = useState("");
 
   const getPageSize = () => {
     const width = window.innerWidth;
@@ -37,7 +41,11 @@ export default function CommunityFeedPage({ initBestArticles, initAllArticles }:
 
   const handleSortSeclection = (selectOrder: string) => {
     setOrderBy(selectOrder);
-  }
+  };
+
+  const handleInputChange = (searchInput: string) => {
+    setInputValue(searchInput);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,13 +75,13 @@ export default function CommunityFeedPage({ initBestArticles, initAllArticles }:
   useEffect(() => {
     const fetchSortedArticle = async () => {
       const response = await axios.get(
-        `articles/?orderBy=${orderBy}`
+        `articles/?orderBy=${orderBy}&keyword=${inputValue}`
       );
       setAllArticles(response.data.list ?? []);
     };
 
     fetchSortedArticle();
-  }, [orderBy]);
+  }, [orderBy, inputValue]);
 
   return (
     <>
@@ -81,6 +89,7 @@ export default function CommunityFeedPage({ initBestArticles, initAllArticles }:
       <AllArticleSection
         allArticles={allArticles}
         onSortSelection={handleSortSeclection}
+        onInputChange={handleInputChange}
       />
     </>
   );
