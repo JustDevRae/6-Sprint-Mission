@@ -65,13 +65,14 @@
 
 .tagWrapper ul {
   display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
 .tagWrapper ul li {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-right: 12px;
   padding: 12px 12px;
   border-radius: 26px;
   background-color: #f9fafb;
