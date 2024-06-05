@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import styles from "@/styles/Home.module.css";
+import styles from "@/styles/HomePage.module.css";
 import TopBanner from "@/assets/images/home/hero-image.png";
 import Home1 from "@/assets/images/home/feature1-image.png";
 import Home2 from "@/assets/images/home/feature2-image.png";
