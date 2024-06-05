@@ -1,9 +1,7 @@
 .top_banner {
   position: relative;
-  min-width: 1920px;
   width: 100%;
   height: 540px;
-  margin-top: 70px;
   background-color: #cfe5ff;
 }
 
@@ -99,7 +97,6 @@
 
 .botton_banner {
   position: relative;
-  min-width: 1920px;
   width: 100%;
   height: 540px;
   background-color: #cfe5ff;
