@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
 import TopBanner from "@/assets/images/home/hero-image.png";
@@ -20,7 +21,9 @@ export default function Home() {
             일상의 모든 물건을 <br />
             거래해보세요
           </p>
-          <button className={styles.top_banner_button}>구경하러 가기</button>
+          <Link href="/items">
+            <button className={styles.top_banner_button}>구경하러 가기</button>
+          </Link>
         </div>
         <Image src={TopBanner} alt="상단배너이미지" width={996} height={447} />
       </div>
