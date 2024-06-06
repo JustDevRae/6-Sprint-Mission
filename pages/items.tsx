@@ -1,3 +1,4 @@
+import BestProductSection from "@/components/BestProductSection";
 import axios from "@/lib/axios";
 import React, { useState } from "react";
 export async function getServerSideProps() {
@@ -22,7 +23,7 @@ export default function MarketPage({ initBestProducts, initAllProducts }: any) {
 
   return (
     <>
-      <div>안녕하세요 마켓 페이지입니다.</div>
+      <BestProductSection bestProducts={bestProducts} />
     </>
   );
 }
