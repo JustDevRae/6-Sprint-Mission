@@ -20,7 +20,10 @@ export default function AllArticleSection({
           <button className={styles.writeButton}>글쓰기</button>
         </div>
         <div className={styles.articleHeader}>
-          <SearchForm onInputChange={onInputChange} />
+          <SearchForm
+            onInputChange={onInputChange}
+            className={styles.allArticleSearchBar}
+          />
           <DropDownButton onSortSelection={onSortSelection} />
         </div>
         <div className="allArticleList">

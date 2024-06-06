@@ -58,3 +58,8 @@
   align-items: center;
   gap: 8px;
 }
+
+.allArticleSearchBar{
+  width: 1054px;
+  height: 42px;
+}

@@ -2,7 +2,7 @@ import Image from "next/image";
 import Search from "@/assets/images/icons/ic_search.svg";
 import styles from "@/components/SearchForm.module.css";
 
-export default function SearchForm({ onInputChange }: any) {
+export default function SearchForm({ onInputChange, className="" }: any) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(e.target.value);
   };
@@ -17,7 +17,7 @@ export default function SearchForm({ onInputChange }: any) {
         <input
           type="text"
           placeholder="검색할 상품을 입력해주세요"
-          className={styles.searchInput}
+          className={`${styles.searchInput} ${className}`}
           onChange={handleChange}
         />
       </div>

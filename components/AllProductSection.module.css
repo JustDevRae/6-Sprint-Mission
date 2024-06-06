@@ -1,16 +1,43 @@
-.allProductContainer{
+.allProductContainer {
   width: 1200px;
-  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.allProductHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.allProductHeaderRight {
+  display: flex;
+  gap: 12px;
 }
 
 .allProductTitle {
-  margin-bottom: 16px;
   font-size: 20px;
   font-weight: 700;
   line-height: 28px;
   color: #111827;
 }
 
+.addProductButton {
+  width: 133px;
+  height: 42px;
+  border-radius: 8px;
+  border: none;
+  background-color: #3692ff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #fff;
+}
+
+.addProductButton:hover {
+  cursor: pointer;
+  background-color: #1251aa;
+}
 
 .allProductList {
   display: grid;
@@ -18,10 +45,14 @@
   grid-template-rows: repeat(2, 1fr);
   row-gap: 40px;
   column-gap: 24px;
-  background-color: aquamarine;
 }
 
 .allProductImage {
   width: 221px;
   height: 221px;
+}
+
+.allProductSearchBar {
+  width: 332px;
+  height: 42px;
 }

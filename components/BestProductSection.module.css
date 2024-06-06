@@ -1,6 +1,6 @@
 .bestProductsContainer {
   width: 1200px;
-  margin-top: 24px;
+  margin: 24px 0 40px;
 }
 
 .bestProductTitle {
@@ -16,7 +16,7 @@
   gap: 24px;
 }
 
-.bestProductImage{
+.bestProductImage {
   width: 282px;
   height: 282px;
 }

@@ -1,7 +1,7 @@
 import BestProductSection from "@/components/BestProductSection";
 import AllProductSection from "@/components/AllProductSection";
 import axios from "@/lib/axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 export async function getServerSideProps() {
   const bestProductsResponse = await axios.get(
     "products/?pageSize=4&orderBy=favorite"
@@ -21,11 +21,39 @@ export async function getServerSideProps() {
 export default function MarketPage({ initBestProducts, initAllProducts }: any) {
   const [bestProducts, setBestProducts] = useState(initBestProducts);
   const [allProducts, setAllProducts] = useState(initAllProducts);
+  const [orderBy, setOrderBy] = useState("recent");
+  const [inputValue, setInputValue] = useState("");
+
+
+
+  const handleSortSeclection = (selectOrder: string) => {
+    setOrderBy(selectOrder);
+  };
+
+  const handleInputChange = (searchInput: string) => {
+    setInputValue(searchInput);
+  };
+
+
+  useEffect(() => {
+    const fetchSortedProducts = async () => {
+      const response = await axios.get(
+        `products/?orderBy=${orderBy}&keyword=${inputValue}`
+      );
+      setAllProducts(response.data.list ?? []);
+    };
+
+    fetchSortedProducts();
+  }, [orderBy, inputValue]);
 
   return (
     <>
       <BestProductSection bestProducts={bestProducts} />
-      <AllProductSection allProducts={allProducts} />
+      <AllProductSection
+        allProducts={allProducts}
+        onSortSelection={handleSortSeclection}
+        onInputChange={handleInputChange}
+      />
     </>
   );
 }
