@@ -9,10 +9,14 @@
   font-weight: 700;
   line-height: 28px;
   color: #111827;
-
 }
 
 .bestProductsList {
   display: flex;
   gap: 24px;
+}
+
+.bestProductImage{
+  width: 282px;
+  height: 282px;
 }
