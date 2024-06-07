@@ -2,6 +2,7 @@ import axios from "@/lib/axios";
 import Image from "next/image";
 import stylse from "@/styles/ProductDetailPage.module.css";
 import Heart from "@/assets/images/icons/ic_heart.svg";
+import Empty from "@/assets/images/ui/empty-comments.svg";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context: any) {
@@ -101,28 +102,37 @@ export default function ProductDetailPage({
         </button>
       </form>
 
-      <div className={stylse.commentSection}>
-        {productComments.map((comment: any) => (
-          <div key={comment.id} className={stylse.commentWrapper}>
-            <p className={stylse.content}>{comment.content}</p>
-            <div className={stylse.userInfoWrapper}>
-              <div className={stylse.userImageWrapper}>
-                <Image
-                  src={comment.writer.image}
-                  alt={comment.writer.nickname}
-                  layout="fill"
-                  objectFit="cover"
-                  priority
-                />
-              </div>
-              <div className={stylse.commentInfo}>
-                <p className={stylse.nickname}>{comment.writer.nickname}</p>
-                <p className={stylse.date}>{comment.createdAt}</p>
+      {productComments.length !== 0 ? (
+        <div className={stylse.commentSection}>
+          {productComments.map((comment: any) => (
+            <div key={comment.id} className={stylse.commentWrapper}>
+              <p className={stylse.content}>{comment.content}</p>
+              <div className={stylse.userInfoWrapper}>
+                <div className={stylse.userImageWrapper}>
+                  <Image
+                    src={comment.writer.image}
+                    alt={comment.writer.nickname}
+                    layout="fill"
+                    objectFit="cover"
+                    priority
+                  />
+                </div>
+                <div className={stylse.commentInfo}>
+                  <p className={stylse.nickname}>{comment.writer.nickname}</p>
+                  <p className={stylse.date}>{comment.createdAt}</p>
+                </div>
               </div>
             </div>
+          ))}
+        </div>
+      ) : (
+        <div className={stylse.emptySection}>
+          <div className={stylse.emptyImageWrapper}>
+            <Image src={Empty} alt="빈 댓글" objectFit="cover" priority />
           </div>
-        ))}
-      </div>
+          <p className={stylse.noComment}>아직 문의가 없습니다.</p>
+        </div>
+      )}
     </>
   );
 }
