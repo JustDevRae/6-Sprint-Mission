@@ -7,11 +7,7 @@ export default function ProductCard({ product, className = "" }: any) {
       <div className={styles.cardWrapper}>
         <div className={`${styles.imageWrapper} ${className}`}>
           <Image
-            src={
-              product.images[0] !== "https://example.com/..."
-                ? product?.images[0]
-                : ""
-            }
+            src={product.images[0]}
             alt={product.name}
             layout="fill"
             objectFit="cover"
