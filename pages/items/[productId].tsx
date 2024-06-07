@@ -101,7 +101,28 @@ export default function ProductDetailPage({
         </button>
       </form>
 
-      <div className="commentSection"></div>
+      <div className={stylse.commentSection}>
+        {productComments.map((comment: any) => (
+          <div key={comment.id} className={stylse.commentWrapper}>
+            <p className={stylse.content}>{comment.content}</p>
+            <div className={stylse.userInfoWrapper}>
+              <div className={stylse.userImageWrapper}>
+                <Image
+                  src={comment.writer.image}
+                  alt={comment.writer.nickname}
+                  layout="fill"
+                  objectFit="cover"
+                  priority
+                />
+              </div>
+              <div className={stylse.commentInfo}>
+                <p className={stylse.nickname}>{comment.writer.nickname}</p>
+                <p className={stylse.date}>{comment.createdAt}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
