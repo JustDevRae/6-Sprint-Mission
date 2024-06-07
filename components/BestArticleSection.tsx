@@ -5,8 +5,6 @@ import Heart from "@/assets/images/icons/ic_heart.svg";
 import Badge from "@/assets/images/ui/best_badge.svg";
 import styles from "@/components/BestArticleSection.module.css";
 
-
-
 export default function BestArticleSection({ bestArticles }: any) {
   return (
     <>
@@ -23,7 +21,24 @@ export default function BestArticleSection({ bestArticles }: any) {
                 style={{ position: "absolute", top: 0, left: 24 }}
               />
               <div className={styles.bestArticleContent}>
-                <div className={styles.articleTitle}>{bestArticle.title}</div>
+                <div className={styles.contentWrapper}>
+                  <p className={styles.articleTitle}>{bestArticle.title}</p>
+                  {bestArticle.image !== null ? (
+                    <div className={styles.articleImageWrapper}>
+                      <Image
+                        src={bestArticle.image}
+                        alt="상품이미지"
+                        width={48}
+                        height={48}
+                        objectFit="cover"
+                        priority
+                      />
+                    </div>
+                  ) : (
+                    <div></div>
+                  )}
+                </div>
+
                 <div className={styles.articleContentBottom}>
                   <div className={styles.bestArticleBottomLeft}>
                     {bestArticle.writer.nickname}

@@ -1,4 +1,4 @@
-.articleContainer{
+.articleContainer {
   margin: 24px auto 16px;
 }
 
@@ -10,11 +10,25 @@
   margin-bottom: 24px;
 }
 
+.contentWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .articleTitle {
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   color: #111827;
+}
+.articleImageWrapper {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
 }
 
 .articleContentBottom {
@@ -54,7 +68,7 @@
   width: 330px;
 }
 
-.bestArticleBottomLeft{
+.bestArticleBottomLeft {
   display: flex;
   align-items: center;
   gap: 8px;

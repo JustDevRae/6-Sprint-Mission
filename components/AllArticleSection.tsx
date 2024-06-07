@@ -26,10 +26,27 @@ export default function AllArticleSection({
           />
           <DropDownButton onSortSelection={onSortSelection} />
         </div>
-        <div className="allArticleList">
+        <div className={styles.allArticleList}>
           {allArticles.map((allArticle: any) => (
             <div key={allArticle.id} className={styles.allArticleWrapper}>
-              <div className={styles.articleTitle}>{allArticle.title}</div>
+              <div className={styles.contentWrapper}>
+                <div className={styles.articleTitle}>{allArticle.title}</div>
+                {allArticle.image !== null ? (
+                  <div className={styles.articleImageWrapper}>
+                    <Image
+                      src={allArticle.image}
+                      alt="상품이미지"
+                      width={48}
+                      height={48}
+                      objectFit="cover"
+                      priority
+                    />
+                  </div>
+                ) : (
+                  <div></div>
+                )}
+              </div>
+
               <div className={styles.articleContentBottom}>
                 <div className={styles.allArticleBottomLeft}>
                   <Image src={Profile} alt="게시자 아이콘" />
