@@ -212,3 +212,25 @@
   line-height: 24px;
   color: #9ca3af;
 }
+
+.backButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 240px;
+  height: 48px;
+  background: #3692ff;
+  border-radius: 40px;
+  border: none;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #ffffff;
+  margin: 24px auto;
+}
+
+.backButton:hover{
+  cursor: pointer;
+  background-color: #1251aa;
+}

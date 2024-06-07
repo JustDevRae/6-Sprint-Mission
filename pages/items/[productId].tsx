@@ -1,8 +1,10 @@
 import axios from "@/lib/axios";
+import Link from "next/link";
 import Image from "next/image";
 import stylse from "@/styles/ProductDetailPage.module.css";
 import Heart from "@/assets/images/icons/ic_heart.svg";
 import Empty from "@/assets/images/ui/empty-comments.svg";
+import Back from "@/assets/images/icons/ic_back.svg";
 import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context: any) {
@@ -133,6 +135,13 @@ export default function ProductDetailPage({
           <p className={stylse.noComment}>아직 문의가 없습니다.</p>
         </div>
       )}
+
+      <Link href="/items" style={{ textDecoration: "none" }}>
+        <button className={stylse.backButton}>
+          목록으로 돌아가기
+          <Image src={Back} alt="목록으로 돌아가기 버튼" />
+        </button>
+      </Link>
     </>
   );
 }
