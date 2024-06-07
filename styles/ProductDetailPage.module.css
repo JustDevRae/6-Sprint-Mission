@@ -134,4 +134,9 @@
   font-weight: 600;
   line-height: 19px;
   color: #fff;
+  cursor: pointer;
+}
+
+.registerButton:disabled{
+  background-color: #9ca3Af;
 }

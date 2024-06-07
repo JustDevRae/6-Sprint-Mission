@@ -2,6 +2,7 @@ import axios from "@/lib/axios";
 import Image from "next/image";
 import stylse from "@/styles/ProductDetailPage.module.css";
 import Heart from "@/assets/images/icons/ic_heart.svg";
+import { useEffect, useState } from "react";
 
 export async function getServerSideProps(context: any) {
   const productId = context.params["productId"];
@@ -24,8 +25,25 @@ export default function ProductDetailPage({
   productDetail,
   productComments,
 }: any) {
-  console.log(productDetail);
-  console.log(productComments);
+  const [value, setValue] = useState<string>("");
+  const [disabled, setDisabled] = useState(true);
+
+  const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setValue(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
+  useEffect(() => {
+    if (value !== "") {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [value]);
+
   return (
     <>
       <div className={stylse.detailSection}>
@@ -70,13 +88,17 @@ export default function ProductDetailPage({
         </div>
       </div>
 
-      <form className={stylse.questionSection}>
+      <form onSubmit={handleSubmit} className={stylse.questionSection}>
         <label className={stylse.questionLabel}>문의하기</label>
         <textarea
+          value={value}
           placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
           className={stylse.questionInput}
+          onChange={handleInput}
         />
-        <button className={stylse.registerButton}>등록</button>
+        <button disabled={disabled} className={stylse.registerButton}>
+          등록
+        </button>
       </form>
 
       <div className="commentSection"></div>
