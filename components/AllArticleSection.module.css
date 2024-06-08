@@ -3,10 +3,10 @@
 }
 
 .articleHeader {
-  width: 1200px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  width: 1200px;
   margin-bottom: 24px;
 }
 
@@ -34,14 +34,14 @@
   width: 72px;
   height: 72px;
   padding: 10px;
-  border-radius: 6px;
   border: 1px solid #e5e7eb;
+  border-radius: 6px;
 }
 
 .articleContentBottom {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 24px;
 }
 
@@ -54,9 +54,9 @@
 .writeButton {
   width: 88px;
   height: 42px;
-  border-radius: 8px;
-  border: none;
   background-color: #3692ff;
+  border: none;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
@@ -68,9 +68,9 @@
   flex-direction: column;
   width: 1200px;
   height: 136px;
+  background-color: #fff;
   border-bottom: 1px solid #e5e7eb;
   border-radius: 1px;
-  background-color: #fff;
 }
 
 .allArticleBottomLeft {

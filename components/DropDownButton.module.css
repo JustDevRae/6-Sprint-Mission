@@ -4,33 +4,33 @@
 
 .dropDownButton{
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 10px;
   width: 130px;
-  height: 42px;  
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
+  height: 42px;
   background-color: #fff;
   cursor: pointer;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
 }
 
 .dropDownMenu{
-  position: absolute;
-  top: 50px;
-  left: 0px;
-  z-index: 1;
   display: flex;
   flex-direction: column;
-  border-radius: 8px;
-  border: 1px solid#e5e7eb;
+  position: absolute;
+  z-index: 1;
+  top: 50px;
+  left: 0px;
   background-color: #fff;
+  border: 1px solid#e5e7eb;
+  border-radius: 8px;
 }
 
 .dropDownItem{
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 130px;
   height: 42px;
   border-bottom: 1px solid #e5e7eb;
@@ -42,6 +42,6 @@
 }
 
 .dropDownItem:hover{
-  cursor: pointer;
   background-color: #e5e7eb;
+  cursor: pointer;
 }

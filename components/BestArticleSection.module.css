@@ -3,17 +3,17 @@
 }
 
 .articleHeader {
-  width: 1200px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  width: 1200px;
   margin-bottom: 24px;
 }
 
 .contentWrapper{
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .articleTitle {
@@ -27,14 +27,14 @@
   width: 72px;
   height: 72px;
   padding: 10px;
-  border-radius: 6px;
   border: 1px solid #e5e7eb;
+  border-radius: 6px;
 }
 
 .articleContentBottom {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .likeCountWrapper {
@@ -53,19 +53,19 @@
   position: relative;
   width: 384px;
   height: 169px;
-  border-radius: 8px;
   background-color: #f9fafb;
+  border-radius: 8px;
 }
 
 .bestArticleContent {
-  position: absolute;
-  top: 46px;
-  left: 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100px;
+  position: absolute;
+  top: 46px;
+  left: 24px;
   width: 330px;
+  height: 100px;
 }
 
 .bestArticleBottomLeft {

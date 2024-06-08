@@ -8,8 +8,8 @@
   width: 282px;
   height: 282px;
   margin: 12px 0 24px 0;
-  border-radius: 12px;
   background-color: #f3f4f6;
+  border-radius: 12px;
 }
 
 .imgAddInput:hover {
@@ -33,10 +33,10 @@
   width: 24px;
   height: 24px;
   background-color: #9ca3af;
+  border: none;
+  border-radius: 9999px;
   font-weight: 700;
   color: #fff;
-  border-radius: 9999px;
-  border: none;
 }
 
 .deleteButton img {

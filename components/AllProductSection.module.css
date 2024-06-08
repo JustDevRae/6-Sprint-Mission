@@ -5,8 +5,8 @@
 
 .allProductHeader {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin-bottom: 16px;
 }
 
@@ -25,9 +25,9 @@
 .addProductButton {
   width: 133px;
   height: 42px;
-  border-radius: 8px;
-  border: none;
   background-color: #3692ff;
+  border: none;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
@@ -35,16 +35,16 @@
 }
 
 .addProductButton:hover {
-  cursor: pointer;
   background-color: #1251aa;
+  cursor: pointer;
 }
 
 .allProductList {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   row-gap: 40px;
   column-gap: 24px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .allProductImage {

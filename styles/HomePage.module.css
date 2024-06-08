@@ -6,12 +6,12 @@
 }
 
 .top_banner_wrapper {
-  position: absolute;
-  top: 183px;
-  left: 358px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+  position: absolute;
+  top: 183px;
+  left: 358px;
 }
 
 .top_banner_description {
@@ -23,19 +23,19 @@
 .top_banner_button {
   width: 357px;
   height: 56px;
-  border-radius: 40px;
-  border: none;
   background-color: #3692ff;
+  border: none;
+  border-radius: 40px;
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  text-align: center;
   color: #fff;
+  text-align: center;
 } 
 
 .top_banner_button:hover{
-  cursor: pointer;
   background-color: #1251aa;
+  cursor: pointer;
 }
 
 .top_banner img {
@@ -45,10 +45,10 @@
 }
 
 .main {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -73,19 +73,19 @@
 }
 
 .section p {
+  padding-bottom: 12px;
   font-size: 18px;
   font-weight: 700;
   line-height: 25px;
   color: #3692ff;
-  padding-bottom: 12px;
 }
 
 .section h1 {
+  padding-bottom: 24px;
   font-size: 40px;
   font-weight: 700;
   line-height: 56px;
   color: #374151;
-  padding-bottom: 24px;
 }
 
 .section h3 {

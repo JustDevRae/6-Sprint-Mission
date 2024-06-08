@@ -42,11 +42,11 @@
 }
 
 .detailWrapperMain .label {
+  padding-bottom: 8px;
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
   color: #4b5563;
-  padding-bottom: 8px;
 }
 
 .introduceWrapper {
@@ -71,8 +71,8 @@
 
 .tag {
   padding: 6px 16px;
-  border-radius: 26px;
   background-color: #f3f4f6;
+  border-radius: 26px;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -80,13 +80,13 @@
 
 .likeCountWrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   gap: 4px;
   width: 87px;
   height: 40px;
-  border-radius: 35px;
   border: 1px solid #e5e7eb;
+  border-radius: 35px;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
@@ -108,32 +108,32 @@
 }
 
 .questionInput {
+  outline: none;
+  resize: none;
   width: 100%;
   height: 104px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
   margin: 16px 0;
   padding: 16px 24px;
   background-color: #f3f4f6;
+  border: none;
+  border-radius: 12px;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  resize: none;
 }
 
 .registerButton {
   align-self: flex-end;
   width: 74px;
   height: 42px;
-  border-radius: 8px;
-  border: none;
   background-color: #3692ff;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
   color: #fff;
-  cursor: pointer;
 }
 
 .registerButton:disabled {
@@ -153,8 +153,8 @@
   gap: 24px;
   width: 1200px;
   height: 110px;
-  border-bottom: 1px solid #e5e7eb;
   background-color: #fff;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 .content {
@@ -220,17 +220,17 @@
   gap: 10px;
   width: 240px;
   height: 48px;
+  margin: 24px auto;
   background: #3692ff;
-  border-radius: 40px;
   border: none;
-  font-weight: 600;
+  border-radius: 40px;
   font-size: 18px;
+  font-weight: 600;
   line-height: 24px;
   color: #ffffff;
-  margin: 24px auto;
 }
 
 .backButton:hover{
-  cursor: pointer;
   background-color: #1251aa;
+  cursor: pointer;
 }
