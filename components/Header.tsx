@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import styles from "@/components/Header.module.css";
 import Logo from "@/assets/images/logo/logo.svg";
 
 export default function Header() {
+  const router = useRouter();
   return (
     <>
       <header className={styles.header}>
@@ -13,11 +15,23 @@ export default function Header() {
             <Image src={Logo} alt="판다마켓 로고" />
           </Link>
 
-          <Link href="/boards">
-            <div>자유게시판</div>
+          <Link href="/boards" style={{ textDecoration: "none" }}>
+            <span
+              className={`${styles.navLink} ${
+                router.pathname === "/boards" ? styles.navLinkActive : ""
+              }`}
+            >
+              자유게시판
+            </span>
           </Link>
-          <Link href="/items">
-            <div>중고마켓</div>
+          <Link href="/items" style={{ textDecoration: "none" }}>
+            <span
+              className={`${styles.navLink} ${
+                router.pathname === "/items" ? styles.navLinkActive : ""
+              }`}
+            >
+              중고마켓
+            </span>
           </Link>
         </div>
 

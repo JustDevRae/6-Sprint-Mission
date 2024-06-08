@@ -13,17 +13,24 @@
   border-bottom: 1px solid #dfdfdf;
 }
 
-.nav{
+.nav {
   display: flex;
   align-items: center;
   gap: 46px;
+}
+
+.navLink {
   font-size: 18px;
   font-weight: 700;
   line-height: 21px;
   color: #4b5563;
 }
 
-.header .login_button{
+.navLinkActive{
+  color: #3692ff;
+}
+
+.header .login_button {
   width: 128px;
   height: 48px;
   background-color: #3692ff;
@@ -35,7 +42,7 @@
   color: #fff;
 }
 
-.login_button:hover{
+.login_button:hover {
   background-color: #1251aa;
   cursor: pointer;
 }
