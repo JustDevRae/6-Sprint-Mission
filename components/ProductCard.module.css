@@ -1,16 +1,37 @@
-.cardWrapper{
+.cardWrapper {
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.imageWrapper{
+.imageWrapper {
   position: relative;
   border-radius: 16px;
 }
 
-.likeCountWrapper{
+.likeCountWrapper {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  color: #1f2937;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 19px;
+  color: #1f2937;
+}
+
+.favoriteCount {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  color: #4b5563;
 }

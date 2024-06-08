@@ -6,7 +6,7 @@ import styles from "@/components/ProductCard.module.css";
 export default function ProductCard({ product, className = "" }: any) {
   return (
     <>
-      <Link href={`/items/${product.id}`}>
+      <Link href={`/items/${product.id}`} style={{ textDecoration: "none" }}>
         <div className={styles.cardWrapper}>
           <div className={`${styles.imageWrapper} ${className}`}>
             <Image
@@ -15,15 +15,16 @@ export default function ProductCard({ product, className = "" }: any) {
               layout="fill"
               objectFit="cover"
               priority
+              style={{borderRadius: 16}}
             />
           </div>
 
-          <p>{product.name}</p>
-          <p>{product.price}원</p>
+          <p className={styles.name}>{product.name}</p>
+          <p className={styles.price}>{product.price}원</p>
 
           <div className={styles.likeCountWrapper}>
             <Image src={Heart} alt="좋아요 수" />
-            <p>{product.favoriteCount}</p>
+            <p className={styles.favoriteCount}>{product.favoriteCount}</p>
           </div>
         </div>
       </Link>
