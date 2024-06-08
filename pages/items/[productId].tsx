@@ -57,6 +57,7 @@ export default function ProductDetailPage({
             layout="fill"
             objectFit="cover"
             priority
+            style={{ borderRadius: 16 }}
           />
         </div>
         <div className={stylse.detailWrapper}>
