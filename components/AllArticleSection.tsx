@@ -43,7 +43,7 @@ export default function AllArticleSection({
                     />
                   </div>
                 ) : (
-                  <div></div>
+                  <div style={{width: 72, height: 72}}></div>
                 )}
               </div>
 
