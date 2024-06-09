@@ -2,15 +2,15 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import styles from "@/styles/HomePage.module.css";
-import TopBanner from "@/assets/images/home/hero-image.png";
-import Home1 from "@/assets/images/home/feature1-image.png";
-import Home2 from "@/assets/images/home/feature2-image.png";
-import Home3 from "@/assets/images/home/feature3-image.png";
-import BottonBanner from "@/assets/images/home/bottom-banner-image.png";
-import Meta from "@/assets/images/social/facebook-logo.svg";
-import Twitter from "@/assets/images/social/twitter-logo.svg";
-import Youtube from "@/assets/images/social/youtube-logo.svg";
-import Instagram from "@/assets/images/social/instagram-logo.svg";
+import TopBanner from "@/public/images/home/hero-image.png";
+import Home1 from "@/public/images/home/feature1-image.png";
+import Home2 from "@/public/images/home/feature2-image.png";
+import Home3 from "@/public/images/home/feature3-image.png";
+import BottonBanner from "@/public/images/home/bottom-banner-image.png";
+import Meta from "@/public/images/social/facebook-logo.svg";
+import Twitter from "@/public/images/social/twitter-logo.svg";
+import Youtube from "@/public/images/social/youtube-logo.svg";
+import Instagram from "@/public/images/social/instagram-logo.svg";
 
 export default function Home() {
   return (

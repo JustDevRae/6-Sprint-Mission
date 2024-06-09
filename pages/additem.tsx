@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Close from "@/assets/images/icons/ic_x.svg";
+import Close from "@/public/images/icons/ic_x.svg";
 import styles from "@/styles/AddItemPage.module.css";
 import FileInput from "@/components/FileInput";
 

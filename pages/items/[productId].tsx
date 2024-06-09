@@ -3,9 +3,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { GetServerSidePropsContext } from "next";
 import stylse from "@/styles/ProductDetailPage.module.css";
-import Heart from "@/assets/images/icons/ic_heart.svg";
-import Empty from "@/assets/images/ui/empty-comments.svg";
-import Back from "@/assets/images/icons/ic_back.svg";
+import Heart from "@/public/images/icons/ic_heart.svg";
+import Empty from "@/public/images/ui/empty-comments.svg";
+import Back from "@/public/images/icons/ic_back.svg";
 import { useEffect, useState } from "react";
 import { Product, Comment } from "@/types/type";
 

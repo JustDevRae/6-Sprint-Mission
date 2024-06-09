@@ -1,7 +1,7 @@
 import formatDate from "@/util/formatDate";
 import Image from "next/image";
-import Heart from "@/assets/images/icons/ic_heart.svg";
-import Badge from "@/assets/images/ui/best_badge.svg";
+import Heart from "@/public/images/icons/ic_heart.svg";
+import Badge from "@/public/images/ui/best_badge.svg";
 import styles from "@/components/BestArticleSection.module.css";
 import { Article } from "@/types/type";
 
