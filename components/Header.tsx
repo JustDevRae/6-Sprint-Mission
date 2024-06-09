@@ -27,7 +27,9 @@ export default function Header() {
           <Link href="/items" style={{ textDecoration: "none" }}>
             <span
               className={`${styles.navLink} ${
-                router.pathname === "/items" ? styles.navLinkActive : ""
+                router.pathname === "/items" || router.pathname === "/additem"
+                  ? styles.navLinkActive
+                  : ""
               }`}
             >
               중고마켓
