@@ -2,8 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import Heart from "@/assets/images/icons/ic_heart.svg";
 import styles from "@/components/ProductCard.module.css";
+import { Product } from "@/types/type";
 
-export default function ProductCard({ product, className = "" }: any) {
+interface ProductCardProps {
+  product: Product;
+  className: string;
+}
+
+export default function ProductCard({
+  product,
+  className = "",
+}: ProductCardProps) {
   return (
     <>
       <Link href={`/items/${product.id}`} style={{ textDecoration: "none" }}>
@@ -15,7 +24,7 @@ export default function ProductCard({ product, className = "" }: any) {
               layout="fill"
               objectFit="cover"
               priority
-              style={{borderRadius: 16}}
+              style={{ borderRadius: 16 }}
             />
           </div>
 

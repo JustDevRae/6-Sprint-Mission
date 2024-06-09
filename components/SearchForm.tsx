@@ -2,7 +2,12 @@ import Image from "next/image";
 import Search from "@/assets/images/icons/ic_search.svg";
 import styles from "@/components/SearchForm.module.css";
 
-export default function SearchForm({ onInputChange, className="" }: any) {
+interface SearchFormProps {
+  onInputChange: (event: string) => void;
+  className: string;
+}
+
+export default function SearchForm({ onInputChange, className = "" }: SearchFormProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onInputChange(e.target.value);
   };

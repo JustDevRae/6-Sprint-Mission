@@ -4,7 +4,11 @@ import styles from "@/components/DropDownButton.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-export default function DropDownButton({ onSortSelection }: any) {
+interface DropDownButtonProps {
+  onSortSelection: (event: string) => void;
+}
+
+export default function DropDownButton({ onSortSelection }: DropDownButtonProps) {
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
 

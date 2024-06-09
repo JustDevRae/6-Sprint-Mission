@@ -2,6 +2,12 @@ import axios from "@/lib/axios";
 import React, { useEffect, useState } from "react";
 import BestArticleSection from "@/components/BestArticleSection";
 import AllArticleSection from "@/components/AllArticleSection";
+import { Article } from "@/types/type";
+
+interface CommunityFeedPageProps {
+  initBestArticles: Article[];
+  initAllArticles: Article[];
+}
 
 export async function getServerSideProps() {
   const besrtArticleResponse = await axios.get(
@@ -21,10 +27,10 @@ export async function getServerSideProps() {
 export default function CommunityFeedPage({
   initBestArticles,
   initAllArticles,
-}: any) {
+}: CommunityFeedPageProps) {
   const [pageSize, setPageSize] = useState(3);
-  const [bestArticles, setBestArticles] = useState(initBestArticles);
-  const [allArticles, setAllArticles] = useState(initAllArticles);
+  const [bestArticles, setBestArticles] = useState<Article[]>(initBestArticles);
+  const [allArticles, setAllArticles] = useState<Article[]>(initAllArticles);
   const [orderBy, setOrderBy] = useState("recent");
   const [inputValue, setInputValue] = useState("");
 

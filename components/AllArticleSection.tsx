@@ -3,15 +3,21 @@ import formatDate from "@/util/formatDate";
 import Heart from "@/assets/images/icons/ic_heart.svg";
 import Profile from "@/assets/images/icons/ic_profile.svg";
 import styles from "@/components/AllArticleSection.module.css";
-import { Article } from "@/types/article";
 import DropDownButton from "./DropDownButton";
 import SearchForm from "./SearchForm";
+import { Article } from "@/types/type";
+
+interface allArticlesProps {
+  allArticles: Article[];
+  onSortSelection: (value: string) => void;
+  onInputChange: (event: string) => void;
+}
 
 export default function AllArticleSection({
   allArticles,
   onSortSelection,
   onInputChange,
-}: any) {
+}: allArticlesProps) {
   return (
     <>
       <div className={styles.articleContainer}>
@@ -27,7 +33,7 @@ export default function AllArticleSection({
           <DropDownButton onSortSelection={onSortSelection} />
         </div>
         <div className={styles.allArticleList}>
-          {allArticles.map((allArticle: any) => (
+          {allArticles.map((allArticle) => (
             <div key={allArticle.id} className={styles.allArticleWrapper}>
               <div className={styles.contentWrapper}>
                 <div className={styles.articleTitle}>{allArticle.title}</div>
@@ -43,7 +49,7 @@ export default function AllArticleSection({
                     />
                   </div>
                 ) : (
-                  <div style={{width: 72, height: 72}}></div>
+                  <div style={{ width: 72, height: 72 }}></div>
                 )}
               </div>
 

@@ -1,11 +1,15 @@
 import formatDate from "@/util/formatDate";
-import { Article } from "@/types/article";
 import Image from "next/image";
 import Heart from "@/assets/images/icons/ic_heart.svg";
 import Badge from "@/assets/images/ui/best_badge.svg";
 import styles from "@/components/BestArticleSection.module.css";
+import { Article } from "@/types/type";
 
-export default function BestArticleSection({ bestArticles }: any) {
+interface bestArticleProps {
+  bestArticles: Article[];
+}
+
+export default function BestArticleSection({ bestArticles }: bestArticleProps) {
   return (
     <>
       <div className={styles.articleContainer}>
@@ -13,7 +17,7 @@ export default function BestArticleSection({ bestArticles }: any) {
           <h1 className={styles.articleTitle}>베스트 게시글</h1>
         </div>
         <div className={styles.bestArticleList}>
-          {bestArticles?.map((bestArticle: any) => (
+          {bestArticles?.map((bestArticle) => (
             <div key={bestArticle.id} className={styles.bestArticleWrapper}>
               <Image
                 src={Badge}

@@ -3,12 +3,19 @@ import Link from "next/link";
 import styles from "@/components/AllProductSection.module.css";
 import SearchForm from "./SearchForm";
 import DropDownButton from "./DropDownButton";
+import { Product } from "@/types/type";
+
+interface AllProductProps {
+  allProducts: Product[];
+  onSortSelection: (value: string) => void;
+  onInputChange: (event: string) => void;
+}
 
 export default function AllProductSection({
   allProducts,
   onSortSelection,
   onInputChange,
-}: any) {
+}: AllProductProps) {
   return (
     <>
       <div className={styles.allProductContainer}>
@@ -18,7 +25,7 @@ export default function AllProductSection({
           <div className={styles.allProductHeaderRight}>
             <SearchForm
               onInputChange={onInputChange}
-              clasName={styles.allProductSearchBar}
+              className={styles.allProductSearchBar}
             />
             <Link href="/additem">
               <button className={styles.addProductButton}>상품 등록하기</button>
@@ -29,7 +36,7 @@ export default function AllProductSection({
         </div>
 
         <div className={styles.allProductList}>
-          {allProducts?.map((product: any) => (
+          {allProducts.map((product) => (
             <ProductCard
               key={product.id}
               product={product}

@@ -1,14 +1,16 @@
 import axios from "@/lib/axios";
 import Link from "next/link";
 import Image from "next/image";
+import { GetServerSidePropsContext } from "next";
 import stylse from "@/styles/ProductDetailPage.module.css";
 import Heart from "@/assets/images/icons/ic_heart.svg";
 import Empty from "@/assets/images/ui/empty-comments.svg";
 import Back from "@/assets/images/icons/ic_back.svg";
 import { useEffect, useState } from "react";
+import { Product, Comment } from "@/types/type";
 
-export async function getServerSideProps(context: any) {
-  const productId = context.params["productId"];
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const productId = context.params?.productId as string;
   const productResponse = await axios.get(`/products/${productId}`);
   const commentsResponse = await axios.get(
     `/products/${productId}/comments?limit=3`
@@ -24,10 +26,15 @@ export async function getServerSideProps(context: any) {
   };
 }
 
+interface ProductDetailPageProps {
+  productDetail: Product;
+  productComments: Comment[];
+}
+
 export default function ProductDetailPage({
   productDetail,
   productComments,
-}: any) {
+}: ProductDetailPageProps) {
   const [value, setValue] = useState<string>("");
   const [disabled, setDisabled] = useState(true);
 
@@ -76,7 +83,7 @@ export default function ProductDetailPage({
             <div className={stylse.tagWrapper}>
               <p className={stylse.label}>상품 태그</p>
               <div className={stylse.tagList}>
-                {productDetail.tags.map((tag: any) => (
+                {productDetail.tags.map((tag) => (
                   <div key={tag} className={stylse.tag}>
                     {`#${tag}`}
                   </div>
@@ -107,7 +114,7 @@ export default function ProductDetailPage({
 
       {productComments.length !== 0 ? (
         <div className={stylse.commentSection}>
-          {productComments.map((comment: any) => (
+          {productComments.map((comment) => (
             <div key={comment.id} className={stylse.commentWrapper}>
               <p className={stylse.content}>{comment.content}</p>
               <div className={stylse.userInfoWrapper}>
