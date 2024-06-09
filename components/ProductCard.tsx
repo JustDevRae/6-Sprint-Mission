@@ -29,7 +29,7 @@ export default function ProductCard({
           </div>
 
           <p className={styles.name}>{product.name}</p>
-          <p className={styles.price}>{product.price}원</p>
+          <p className={styles.price}>{product.price.toLocaleString()}원</p>
 
           <div className={styles.likeCountWrapper}>
             <Image src={Heart} alt="좋아요 수" />

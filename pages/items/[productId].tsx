@@ -70,7 +70,9 @@ export default function ProductDetailPage({
         <div className={stylse.detailWrapper}>
           <div className={stylse.detailWrapperHeader}>
             <p className={stylse.productName}>{productDetail.name}</p>
-            <p className={stylse.productPrice}>{productDetail.price}원</p>
+            <p className={stylse.productPrice}>
+              {productDetail.price.toLocaleString()}원
+            </p>
           </div>
           <div className={stylse.detailWrapperMain}>
             <div className={stylse.introduceWrapper}>
