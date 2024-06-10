@@ -23,18 +23,17 @@
   font-size: 18px;
   font-weight: 700;
   line-height: 21px;
-  color: #4b5563;
+  color: var(--color-gray600);
 }
 
-.navLinkActive{
-  color: #3692ff;
+.navLinkActive {
+  color: var(--color-blue);
 }
 
 .header .login_button {
   width: 128px;
   height: 48px;
-  background-color: #3692ff;
-  border: none;
+  background-color: var(--color-blue);
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
@@ -44,5 +43,4 @@
 
 .login_button:hover {
   background-color: #1251aa;
-  cursor: pointer;
 }

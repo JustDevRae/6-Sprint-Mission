@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import styles from "@/components/Header.module.css";
+import styles from "@/components/layout/Header/Header.module.css";
 import Logo from "@/public/images/logo/logo.svg";
 
 export default function Header() {
@@ -15,7 +15,7 @@ export default function Header() {
             <Image src={Logo} alt="판다마켓 로고" />
           </Link>
 
-          <Link href="/boards" style={{ textDecoration: "none" }}>
+          <Link href="/boards">
             <span
               className={`${styles.navLink} ${
                 router.pathname === "/boards" ? styles.navLinkActive : ""
@@ -24,7 +24,7 @@ export default function Header() {
               자유게시판
             </span>
           </Link>
-          <Link href="/items" style={{ textDecoration: "none" }}>
+          <Link href="/items">
             <span
               className={`${styles.navLink} ${
                 router.pathname === "/items" || router.pathname === "/additem"

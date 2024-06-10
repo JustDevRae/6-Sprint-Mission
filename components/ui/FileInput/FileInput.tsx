@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Close from "@/public/images/icons/ic_x.svg";
-import styles from "@/components/FileInput.module.css";
+import styles from "@/components/ui/FileInput/FileInput.module.css";
 interface Props {
   name: string;
   value: File | null;

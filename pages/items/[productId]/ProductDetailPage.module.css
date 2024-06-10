@@ -4,7 +4,7 @@
   width: 1200px;
   height: 518px;
   margin-top: 24px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-gray200);
 }
 
 .imageWrapper {
@@ -25,8 +25,8 @@
   width: 680px;
   height: 109px;
   margin-bottom: 16px;
-  border-bottom: 1px solid #e5e7eb;
-  color: #1f2937;
+  border-bottom: 1px solid var(--color-gray200);
+  color: var(--color-gray800);
 }
 
 .productName {
@@ -46,7 +46,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
-  color: #4b5563;
+  color: var(--color-gray600);
 }
 
 .introduceWrapper {
@@ -57,7 +57,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #1f2937;
+  color: var(--color-gray800);
 }
 
 .tagWrapper {
@@ -85,12 +85,12 @@
   gap: 4px;
   width: 87px;
   height: 40px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--color-gray200);
   border-radius: 35px;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
-  color: #6b7280;
+  color: var(--color-gray500);
 }
 
 .questionSection {
@@ -104,7 +104,7 @@
   font-size: 16px;
   font-weight: 600;
   line-height: 19px;
-  color: #111827;
+  color: var(--color-gray900);
 }
 
 .questionInput {
@@ -115,7 +115,7 @@
   margin: 16px 0;
   padding: 16px 24px;
   background-color: #f3f4f6;
-  border: none;
+
   border-radius: 12px;
   font-size: 16px;
   font-weight: 400;
@@ -126,9 +126,9 @@
   align-self: flex-end;
   width: 74px;
   height: 42px;
-  background-color: #3692ff;
+  background-color: var(--color-blue);
   cursor: pointer;
-  border: none;
+
   border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
@@ -137,7 +137,7 @@
 }
 
 .registerButton:disabled {
-  background-color: #9ca3af;
+  background-color: var(--color-gray400);
 }
 
 .commentSection {
@@ -154,14 +154,14 @@
   width: 1200px;
   height: 110px;
   background-color: #fff;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-gray200);
 }
 
 .content {
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;
-  color: #1f2937;
+  color: var(--color-gray800);
 }
 
 .userInfoWrapper {
@@ -186,14 +186,14 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 17px;
-  color: #4b5563;
+  color: var(--color-gray600);
 }
 
 .date {
   font-size: 12px;
   font-weight: 400;
   line-height: 14px;
-  color: #9ca3af;
+  color: var(--color-gray400);
 }
 .emptySection {
   display: flex;
@@ -210,10 +210,10 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: #9ca3af;
+  color: var(--color-gray400);
 }
 
-.backButton{
+.backButton {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -221,16 +221,16 @@
   width: 240px;
   height: 48px;
   margin: 24px auto;
-  background: #3692ff;
-  border: none;
+  background: var(--color-blue);
+
   border-radius: 40px;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
-.backButton:hover{
+.backButton:hover {
   background-color: #1251aa;
   cursor: pointer;
 }

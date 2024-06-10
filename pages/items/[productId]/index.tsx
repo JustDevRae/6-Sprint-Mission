@@ -2,7 +2,7 @@ import axios from "@/lib/axios";
 import Link from "next/link";
 import Image from "next/image";
 import { GetServerSidePropsContext } from "next";
-import stylse from "@/styles/ProductDetailPage.module.css";
+import stylse from "@/pages/items/[productId]/ProductDetailPage.module.css";
 import Heart from "@/public/images/icons/ic_heart.svg";
 import Empty from "@/public/images/ui/empty-comments.svg";
 import Back from "@/public/images/icons/ic_back.svg";
@@ -146,7 +146,7 @@ export default function ProductDetailPage({
         </div>
       )}
 
-      <Link href="/items" style={{ textDecoration: "none" }}>
+      <Link href="/items">
         <button className={stylse.backButton}>
           목록으로 돌아가기
           <Image src={Back} alt="목록으로 돌아가기 버튼" />

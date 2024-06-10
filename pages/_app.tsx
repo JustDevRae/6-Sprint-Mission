@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
-import Header from "@/components/Header";
-import Container from "@/components/Container";
+import Header from "@/components/layout/Header/Header";
+import Container from "@/components/layout/Container/Container";
 import { useRouter } from "next/router";
 import "@/styles/global.css";
 import "@/styles/reset.css";

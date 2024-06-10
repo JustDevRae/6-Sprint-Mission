@@ -137,11 +137,13 @@ export default function LogInPage() {
           style={{
             outline:
               errorMessages.email !== ""
-                ? "1px solid #F74747"
+                ? "1px solid var(--color-red)"
                 : "1px solid #3182f6",
           }}
         />
-        {errorMessages.email && <p className={styles.error}>{errorMessages.email}</p>}
+        {errorMessages.email && (
+          <p className={styles.error}>{errorMessages.email}</p>
+        )}
 
         <label>비밀번호</label>
         <input
@@ -153,7 +155,7 @@ export default function LogInPage() {
           onBlur={handleOnBlur}
           style={{
             outline: errorMessages.password
-              ? "1px solid #F74747"
+              ? "1px solid var(--color-red)"
               : "1px solid #3182f6",
           }}
         />

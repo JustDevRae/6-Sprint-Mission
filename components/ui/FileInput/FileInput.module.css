@@ -32,8 +32,7 @@
   right: 10px;
   width: 24px;
   height: 24px;
-  background-color: #9ca3af;
-  border: none;
+  background-color: var(--color-gray400);
   border-radius: 9999px;
   font-weight: 700;
   color: #fff;
@@ -47,7 +46,6 @@
 }
 
 .deleteButton:hover {
-  background-color: #3692ff;
+  background-color: var(--color-blue);
   cursor: pointer;
 }
-

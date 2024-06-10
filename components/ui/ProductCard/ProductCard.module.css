@@ -19,19 +19,19 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
-  color: #1f2937;
+  color: var(--color-gray800);
 }
 
 .price {
   font-size: 16px;
   font-weight: 700;
   line-height: 19px;
-  color: #1f2937;
+  color: var(--color-gray800);
 }
 
 .favoriteCount {
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
-  color: #4b5563;
+  color: var(--color-gray600);
 }

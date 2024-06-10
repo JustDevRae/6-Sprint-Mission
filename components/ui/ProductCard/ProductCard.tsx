@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Heart from "@/public/images/icons/ic_heart.svg";
-import styles from "@/components/ProductCard.module.css";
+import styles from "@/components/ui/ProductCard/ProductCard.module.css";
 import { Product } from "@/types/type";
 
 interface ProductCardProps {
@@ -15,7 +15,7 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <>
-      <Link href={`/items/${product.id}`} style={{ textDecoration: "none" }}>
+      <Link href={`/items/${product.id}`}>
         <div className={styles.cardWrapper}>
           <div className={`${styles.imageWrapper} ${className}`}>
             <Image

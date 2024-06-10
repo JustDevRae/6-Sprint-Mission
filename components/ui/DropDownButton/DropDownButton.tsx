@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Sort from "@/public/images/icons/ic_sort.svg";
-import styles from "@/components/DropDownButton.module.css";
+import styles from "@/components/ui/DropDownButton/DropDownButton.module.css";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
