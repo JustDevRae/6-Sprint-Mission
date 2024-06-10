@@ -1,135 +1,96 @@
 import axios from "@/lib/axios";
-import Image from "next/image";
-import formatDate from "@/util/formatDate";
-import Badge from "@/assets/images/ui/best_badge.svg";
-import Heart from "@/assets/images/icons/ic_heart.svg";
-import Search from "@/assets/images/icons/ic_search.svg";
-import Profile from "@/assets/images/icons/ic_profile.svg";
-import Sort from "@/assets/images/icons/ic_sort.svg";
-import { useEffect, useState } from "react";
-import styles from "@/styles/boards.module.css";
+import React, { useEffect, useState } from "react";
+import BestArticleSection from "@/components/BestArticleSection";
+import AllArticleSection from "@/components/AllArticleSection";
 
-interface Article {
-  content: string;
-  createdAt: string;
-  id: number;
-  image: string;
-  likeCount: number;
-  title: string;
-  updatedAt: string;
-  writer: {
-    id: number;
-    nickname: string;
+export async function getServerSideProps() {
+  const besrtArticleResponse = await axios.get(
+    "articles/?pageSize=3&orderBy=like"
+  );
+  const allArticleResponse = await axios.get("articles/?orderBy=like");
+  const bestArticlesData = besrtArticleResponse.data?.list ?? [];
+  const allArticlesData = allArticleResponse.data?.list ?? [];
+  return {
+    props: {
+      initBestArticles: bestArticlesData,
+      initAllArticles: allArticlesData,
+    },
   };
 }
 
-export default function CommunityFeedPage() {
-  const [bestArticles, setBestArticles] = useState<Article[]>([]);
-  const [allArticles, setAllArticles] = useState<Article[]>([]);
+export default function CommunityFeedPage({
+  initBestArticles,
+  initAllArticles,
+}: any) {
+  const [pageSize, setPageSize] = useState(3);
+  const [bestArticles, setBestArticles] = useState(initBestArticles);
+  const [allArticles, setAllArticles] = useState(initAllArticles);
+  const [orderBy, setOrderBy] = useState("recent");
+  const [inputValue, setInputValue] = useState("");
 
-  
+  const getPageSize = () => {
+    const width = window.innerWidth;
+    if (width < 768) {
+      return 1;
+    } else if (width < 1280) {
+      return 2;
+    } else {
+      return 3;
+    }
+  };
 
-  async function getBestArticle() {
-    const response = await axios.get("articles/?pageSize=3&orderBy=like");
-    const nextBestArticle = response.data.list ?? [];
-    setBestArticles(nextBestArticle);
-    console.log(nextBestArticle);
-  }
+  const handleSortSeclection = (selectOrder: string) => {
+    setOrderBy(selectOrder);
+  };
 
-  async function getAllArticle() {
-    const response = await axios.get("articles");
-    const nextAllArticle = response.data.list ?? [];
-    setAllArticles(nextAllArticle);
-    console.log(nextAllArticle);
-  }
+  const handleInputChange = (searchInput: string) => {
+    setInputValue(searchInput);
+  };
 
   useEffect(() => {
-    getBestArticle();
-    getAllArticle();
+    const handleResize = () => {
+      setPageSize(getPageSize());
+    };
+
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  useEffect(() => {
+    const fetchBestArticlesCount = async () => {
+      const response = await axios.get(
+        `articles/?pageSize=${pageSize}&orderBy=like`
+      );
+      setBestArticles(response.data.list ?? []);
+    };
+
+    fetchBestArticlesCount();
+  }, [pageSize]);
+
+  useEffect(() => {
+    const fetchSortedArticle = async () => {
+      const response = await axios.get(
+        `articles/?orderBy=${orderBy}&keyword=${inputValue}`
+      );
+      setAllArticles(response.data.list ?? []);
+    };
+
+    fetchSortedArticle();
+  }, [orderBy, inputValue]);
 
   return (
     <>
-      <div className={styles.articleContainer}>
-        <div className={styles.articleHeader}>
-          <h1 className={styles.articleTitle}>베스트 게시글</h1>
-        </div>
-
-        {/* container */}
-        <div className={styles.bestArticleList}>
-          {bestArticles?.map((bestArticle: any) => (
-            <div key={bestArticle.id} className={styles.bestArticleWrapper}>
-              <Image
-                src={Badge}
-                alt="베스트게시글 뱃지"
-                style={{ position: "absolute", top: 0, left: 24 }}
-              />
-              <div className={styles.bestArticleContent}>
-                {/* content */}
-                <div className={styles.articleTitle}>{bestArticle.title}</div>
-                <div className={styles.articleContentBottom}>
-                  <div className={styles.allArticleBottomLeft}>
-                    {bestArticle.writer.nickname}
-
-                    <div className={styles.likeCountWrapper}>
-                      <Image src={Heart} alt="좋아요 아이콘" />
-                      {bestArticle.likeCount}
-                    </div>
-                  </div>
-                  <div>{formatDate(bestArticle.createdAt)}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className={styles.articleContainer}>
-        <div className={styles.articleHeader}>
-          <h1 className={styles.articleTitle}>게시글</h1>
-          <button className={styles.writeButton}>글쓰기</button>
-        </div>
-        <div className={styles.articleHeader}>
-          <div className={styles.searchInputWrapper}>
-            <Image
-              src={Search}
-              alt="검색 아이콘"
-              style={{ position: "absolute", top: 9, left: 16 }}
-            />
-            <input
-              type="text"
-              placeholder="검색할 상품을 입력해주세요"
-              className={styles.searchInput}
-            />
-          </div>
-          <button className={styles.sortButton}>
-            최신순
-            <Image src={Sort} alt="정렬 아이콘" />
-          </button>
-        </div>
-
-        {/* container */}
-        <div className="allArticleList">
-          {allArticles.map((allArticle) => (
-            <div key={allArticle.id} className={styles.allArticleWrapper}>
-              {/* content */}
-              <div className={styles.articleTitle}>{allArticle.title}</div>
-              <div className={styles.articleContentBottom}>
-                <div className={styles.allArticleBottomLeft}>
-                  <Image src={Profile} alt="게시자 아이콘" />
-                  <div>{allArticle.writer.nickname}</div>
-                  <div>{formatDate(allArticle.createdAt)}</div>
-                </div>
-
-                <div className={styles.likeCountWrapper}>
-                  <Image src={Heart} alt="좋아요 아이콘" />
-                  <div>{allArticle.likeCount}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      <BestArticleSection bestArticles={bestArticles} />
+      <AllArticleSection
+        allArticles={allArticles}
+        onSortSelection={handleSortSeclection}
+        onInputChange={handleInputChange}
+      />
     </>
   );
 }

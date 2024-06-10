@@ -1,0 +1,16 @@
+.cardWrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.imageWrapper{
+  position: relative;
+  border-radius: 16px;
+}
+
+.likeCountWrapper{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

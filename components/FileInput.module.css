@@ -1,0 +1,53 @@
+.imgAddWrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.imgAddInput {
+  width: 282px;
+  height: 282px;
+  margin: 12px 0 24px 0;
+  border-radius: 12px;
+  background-color: #f3f4f6;
+}
+
+.imgAddInput:hover {
+  cursor: pointer;
+}
+
+.previewImgWrapper {
+  position: relative;
+}
+
+.previewImg {
+  width: 282px;
+  height: 282px;
+  border-radius: 12px;
+}
+
+.deleteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 24px;
+  height: 24px;
+  background-color: #9ca3af;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 9999px;
+  border: none;
+}
+
+.deleteButton img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-55%, -60%);
+}
+
+.deleteButton:hover {
+  background-color: #3692ff;
+  cursor: pointer;
+}
+
