@@ -2,7 +2,7 @@ import axios from "@/lib/axios";
 import Link from "next/link";
 import Image from "next/image";
 import { GetServerSidePropsContext } from "next";
-import stylse from "@/pages/items/[productId]/ProductDetailPage.module.css";
+import styles from "@/pages/items/[productId]/ProductDetailPage.module.css";
 import Heart from "@/public/images/icons/ic_heart.svg";
 import Empty from "@/public/images/ui/empty-comments.svg";
 import Back from "@/public/images/icons/ic_back.svg";
@@ -15,13 +15,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const commentsResponse = await axios.get(
     `/products/${productId}/comments?limit=3`
   );
-  const prductDetailData = productResponse.data;
-  const prductCommentsData = commentsResponse.data?.list ?? [];
+  const productDetailData = productResponse.data;
+  const productCommentsData = commentsResponse.data?.list ?? [];
 
   return {
     props: {
-      productDetail: prductDetailData,
-      productComments: prductCommentsData,
+      productDetail: productDetailData,
+      productComments: productCommentsData,
     },
   };
 }
@@ -56,8 +56,8 @@ export default function ProductDetailPage({
 
   return (
     <>
-      <div className={stylse.detailSection}>
-        <div className={stylse.imageWrapper}>
+      <div className={styles.detailSection}>
+        <div className={styles.imageWrapper}>
           <Image
             src={productDetail.images[0]}
             alt={productDetail.name}
@@ -67,33 +67,33 @@ export default function ProductDetailPage({
             style={{ borderRadius: 16 }}
           />
         </div>
-        <div className={stylse.detailWrapper}>
-          <div className={stylse.detailWrapperHeader}>
-            <p className={stylse.productName}>{productDetail.name}</p>
-            <p className={stylse.productPrice}>
+        <div className={styles.detailWrapper}>
+          <div className={styles.detailWrapperHeader}>
+            <p className={styles.productName}>{productDetail.name}</p>
+            <p className={styles.productPrice}>
               {productDetail.price.toLocaleString()}원
             </p>
           </div>
-          <div className={stylse.detailWrapperMain}>
-            <div className={stylse.introduceWrapper}>
-              <p className={stylse.label}>상품 소개</p>
-              <p className={stylse.productDescription}>
+          <div className={styles.detailWrapperMain}>
+            <div className={styles.introduceWrapper}>
+              <p className={styles.label}>상품 소개</p>
+              <p className={styles.productDescription}>
                 {productDetail.description}
               </p>
             </div>
 
-            <div className={stylse.tagWrapper}>
-              <p className={stylse.label}>상품 태그</p>
-              <div className={stylse.tagList}>
+            <div className={styles.tagWrapper}>
+              <p className={styles.label}>상품 태그</p>
+              <div className={styles.tagList}>
                 {productDetail.tags.map((tag) => (
-                  <div key={tag} className={stylse.tag}>
+                  <div key={tag} className={styles.tag}>
                     {`#${tag}`}
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className={stylse.likeCountWrapper}>
+            <div className={styles.likeCountWrapper}>
               <Image src={Heart} alt="하트 아이콘" width={32} height={32} />
               {productDetail.favoriteCount}
             </div>
@@ -101,26 +101,26 @@ export default function ProductDetailPage({
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className={stylse.questionSection}>
-        <label className={stylse.questionLabel}>문의하기</label>
+      <form onSubmit={handleSubmit} className={styles.questionSection}>
+        <label className={styles.questionLabel}>문의하기</label>
         <textarea
           value={value}
           placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
-          className={stylse.questionInput}
+          className={styles.questionInput}
           onChange={handleInput}
         />
-        <button disabled={disabled} className={stylse.registerButton}>
+        <button disabled={disabled} className={styles.registerButton}>
           등록
         </button>
       </form>
 
       {productComments.length !== 0 ? (
-        <div className={stylse.commentSection}>
+        <div className={styles.commentSection}>
           {productComments.map((comment) => (
-            <div key={comment.id} className={stylse.commentWrapper}>
-              <p className={stylse.content}>{comment.content}</p>
-              <div className={stylse.userInfoWrapper}>
-                <div className={stylse.userImageWrapper}>
+            <div key={comment.id} className={styles.commentWrapper}>
+              <p className={styles.content}>{comment.content}</p>
+              <div className={styles.userInfoWrapper}>
+                <div className={styles.userImageWrapper}>
                   <Image
                     src={comment.writer.image}
                     alt={comment.writer.nickname}
@@ -129,25 +129,25 @@ export default function ProductDetailPage({
                     priority
                   />
                 </div>
-                <div className={stylse.commentInfo}>
-                  <p className={stylse.nickname}>{comment.writer.nickname}</p>
-                  <p className={stylse.date}>{comment.createdAt}</p>
+                <div className={styles.commentInfo}>
+                  <p className={styles.nickname}>{comment.writer.nickname}</p>
+                  <p className={styles.date}>{comment.createdAt}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
       ) : (
-        <div className={stylse.emptySection}>
-          <div className={stylse.emptyImageWrapper}>
+        <div className={styles.emptySection}>
+          <div className={styles.emptyImageWrapper}>
             <Image src={Empty} alt="빈 댓글" objectFit="cover" priority />
           </div>
-          <p className={stylse.noComment}>아직 문의가 없습니다.</p>
+          <p className={styles.noComment}>아직 문의가 없습니다.</p>
         </div>
       )}
 
       <Link href="/items">
-        <button className={stylse.backButton}>
+        <button className={styles.backButton}>
           목록으로 돌아가기
           <Image src={Back} alt="목록으로 돌아가기 버튼" />
         </button>

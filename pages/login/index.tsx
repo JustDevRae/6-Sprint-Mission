@@ -3,7 +3,7 @@ import Image from "next/image";
 import Logo from "@/public/images/logo/logo.svg";
 import Google from "@/public/images/social/google-logo.png";
 import Kakao from "@/public/images/social/kakao-logo.png";
-import styles from "@/styles/SignPage.module.css";
+import styles from "@/pages/SignPage.module.css";
 import React, { useEffect, useState } from "react";
 
 interface Login {

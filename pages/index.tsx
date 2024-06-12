@@ -6,7 +6,7 @@ import TopBanner from "@/public/images/home/hero-image.png";
 import Home1 from "@/public/images/home/feature1-image.png";
 import Home2 from "@/public/images/home/feature2-image.png";
 import Home3 from "@/public/images/home/feature3-image.png";
-import BottonBanner from "@/public/images/home/bottom-banner-image.png";
+import BottomBanner from "@/public/images/home/bottom-banner-image.png";
 import Meta from "@/public/images/social/facebook-logo.svg";
 import Twitter from "@/public/images/social/twitter-logo.svg";
 import Youtube from "@/public/images/social/youtube-logo.svg";
@@ -72,13 +72,13 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className={styles.botton_banner}>
+      <div className={styles.bottom_banner}>
         <p>
           믿을 수 있는 <br />
           판다마켓 중고 거래
         </p>
         <Image
-          src={BottonBanner}
+          src={BottomBanner}
           alt="바텀 배너 이미지"
           width={996}
           height={540}
@@ -90,7 +90,7 @@ export default function Home() {
           <div>Privacy Policy</div>
           <div>FAQ</div>
         </div>
-        <div className={styles.fotter_icons}>
+        <div className={styles.footer_icons}>
           <Image src={Meta} alt="메타 아이콘" width={20} height={20} />
           <Image src={Twitter} alt="트위터 아이콘" width={20} height={20} />
           <Image src={Youtube} alt="유튜브 아이콘" width={20} height={20} />

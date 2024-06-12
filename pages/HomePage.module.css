@@ -95,14 +95,14 @@
   color: #374151;
 }
 
-.botton_banner {
+.bottom_banner {
   position: relative;
   width: 100%;
   height: 540px;
   background-color: #cfe5ff;
 }
 
-.botton_banner p {
+.bottom_banner p {
   position: absolute;
   top: 214px;
   left: 337px;
@@ -112,7 +112,7 @@
   color: #374151;
 }
 
-.botton_banner img {
+.bottom_banner img {
   position: absolute;
   top: 0px;
   left: 701px;
@@ -144,12 +144,12 @@
   color: #cfcfcf;
 }
 
-.fotter_icons {
+.footer_icons {
   display: flex;
   gap: 12px;
 }
 
-.fotter_icons img {
+.footer_icons img {
   width: 20px;
   height: 20px;
 }

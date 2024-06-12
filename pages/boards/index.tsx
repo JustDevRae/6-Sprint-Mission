@@ -16,11 +16,11 @@ interface CommunityFeedPageProps {
 }
 
 export async function getServerSideProps() {
-  const besrtArticleResponse = await axios.get(
+  const bestArticleResponse = await axios.get(
     "articles/?pageSize=3&orderBy=like"
   );
   const allArticleResponse = await axios.get("articles/?orderBy=like");
-  const bestArticlesData = besrtArticleResponse.data?.list ?? [];
+  const bestArticlesData = bestArticleResponse.data?.list ?? [];
   const allArticlesData = allArticleResponse.data?.list ?? [];
   return {
     props: {
@@ -51,7 +51,7 @@ export default function CommunityFeedPage({
     }
   };
 
-  const handleSortSeclection = (selectOrder: string) => {
+  const handleSortSelection = (selectOrder: string) => {
     setOrderBy(selectOrder);
   };
 
@@ -154,7 +154,7 @@ export default function CommunityFeedPage({
             onInputChange={handleInputChange}
             className={styles.allArticleSearchBar}
           />
-          <DropDownButton onSortSelection={handleSortSeclection} />
+          <DropDownButton onSortSelection={handleSortSelection} />
         </div>
         <div className={styles.allArticleList}>
           {allArticles.map((allArticle) => (

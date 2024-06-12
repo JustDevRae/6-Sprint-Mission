@@ -37,7 +37,7 @@ export default function MarketPage({
   const [orderBy, setOrderBy] = useState("recent");
   const [inputValue, setInputValue] = useState("");
 
-  const handleSortSeclection = (selectOrder: string) => {
+  const handleSortSelection = (selectOrder: string) => {
     setOrderBy(selectOrder);
   };
 
@@ -83,7 +83,7 @@ export default function MarketPage({
               <button className={styles.addProductButton}>상품 등록하기</button>
             </Link>
 
-            <DropDownButton onSortSelection={handleSortSeclection} />
+            <DropDownButton onSortSelection={handleSortSelection} />
           </div>
         </div>
 
