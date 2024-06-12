@@ -4,7 +4,7 @@ import SearchForm from "@/components/ui/SearchForm/SearchForm";
 import DropDownButton from "@/components/ui/DropDownButton/DropDownButton";
 import React, { useEffect, useState } from "react";
 import { Product } from "@/types/type";
-import styles from "@/pages/items/MarketPage.module.css"
+import styles from "@/pages/items/MarketPage.module.css";
 import ProductCard from "@/components/ui/ProductCard/ProductCard";
 
 interface MarketPageProps {
@@ -13,10 +13,17 @@ interface MarketPageProps {
 }
 
 export async function getServerSideProps() {
-  const bestProductsResponse = await axios.get(
-    "products/?pageSize=4&orderBy=favorite"
-  );
-  const allProductsResponse = await axios.get("products/?orderBy=recent");
+  const bestProductsResponse = await axios.get("products", {
+    params: {
+      pageSize: 4,
+      orderBy: "favorite",
+    },
+  });
+  const allProductsResponse = await axios.get("products", {
+    params: {
+      orderBy: "recent",
+    },
+  });
 
   const bestProductsData = bestProductsResponse.data?.list ?? [];
   const allProductsData = allProductsResponse.data?.list ?? [];

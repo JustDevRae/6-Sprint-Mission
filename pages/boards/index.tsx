@@ -2,7 +2,7 @@ import formatDate from "@/util/formatDate";
 import Image from "next/image";
 import Heart from "@/public/images/icons/ic_heart.svg";
 import Badge from "@/public/images/ui/best_badge.svg";
-import styles from "@/pages/boards/CommunityFeedPage.module.css"
+import styles from "@/pages/boards/CommunityFeedPage.module.css";
 import axios from "@/lib/axios";
 import React, { useEffect, useState } from "react";
 import DropDownButton from "@/components/ui/DropDownButton/DropDownButton";
@@ -16,10 +16,17 @@ interface CommunityFeedPageProps {
 }
 
 export async function getServerSideProps() {
-  const bestArticleResponse = await axios.get(
-    "articles/?pageSize=3&orderBy=like"
-  );
-  const allArticleResponse = await axios.get("articles/?orderBy=like");
+  const bestArticleResponse = await axios.get("articles", {
+    params: {
+      pageSize: 3,
+      orderBy: "like",
+    },
+  });
+  const allArticleResponse = await axios.get("articles", {
+    params: {
+      orderBy: "like",
+    },
+  });
   const bestArticlesData = bestArticleResponse.data?.list ?? [];
   const allArticlesData = allArticleResponse.data?.list ?? [];
   return {
