@@ -13,20 +13,23 @@ interface MarketPageProps {
 }
 
 export async function getServerSideProps() {
-  const bestProductsResponse = await axios.get("products", {
-    params: {
-      pageSize: 4,
-      orderBy: "favorite",
-    },
-  });
-  const allProductsResponse = await axios.get("products", {
-    params: {
-      orderBy: "recent",
-    },
-  });
+  const [bestProductsResponse, allProductsResponse] = await Promise.all([
+    axios.get("products", {
+      params: {
+        pageSize: 4,
+        orderBy: "favorite",
+      },
+    }),
+    axios.get("products", {
+      params: {
+        orderBy: "recent",
+      },
+    }),
+  ]);
 
   const bestProductsData = bestProductsResponse.data?.list ?? [];
   const allProductsData = allProductsResponse.data?.list ?? [];
+  
   return {
     props: {
       initBestProducts: bestProductsData,

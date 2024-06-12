@@ -11,12 +11,16 @@ import { Product, Comment } from "@/types/type";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const productId = context.params?.productId as string;
-  const productResponse = await axios.get(`products/${productId}`);
-  const commentsResponse = await axios.get(`products/${productId}/comments`, {
-    params: {
-      limit: 3,
-    },
-  });
+
+  const [productResponse, commentsResponse] = await Promise.all([
+    axios.get(`products/${productId}`),
+    axios.get(`products/${productId}/comments`, {
+      params: {
+        limit: 3,
+      },
+    }),
+  ]);
+
   const productDetailData = productResponse.data;
   const productCommentsData = commentsResponse.data?.list ?? [];
 

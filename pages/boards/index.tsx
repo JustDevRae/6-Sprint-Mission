@@ -16,19 +16,23 @@ interface CommunityFeedPageProps {
 }
 
 export async function getServerSideProps() {
-  const bestArticleResponse = await axios.get("articles", {
-    params: {
-      pageSize: 3,
-      orderBy: "like",
-    },
-  });
-  const allArticleResponse = await axios.get("articles", {
-    params: {
-      orderBy: "like",
-    },
-  });
+  const [bestArticleResponse, allArticleResponse] = await Promise.all([
+    axios.get("articles", {
+      params: {
+        pageSize: 3,
+        orderBy: "like",
+      },
+    }),
+    axios.get("articles", {
+      params: {
+        orderBy: "like",
+      },
+    }),
+  ]);
+
   const bestArticlesData = bestArticleResponse.data?.list ?? [];
   const allArticlesData = allArticleResponse.data?.list ?? [];
+  
   return {
     props: {
       initBestArticles: bestArticlesData,
