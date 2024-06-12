@@ -8,6 +8,7 @@ import Empty from "@/public/images/ui/empty-comments.svg";
 import Back from "@/public/images/icons/ic_back.svg";
 import { useEffect, useState } from "react";
 import { Product, Comment } from "@/types/type";
+import formatTimeAgo from "@/util/formatTimeAgo";
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const productId = context.params?.productId as string;
@@ -137,7 +138,9 @@ export default function ProductDetailPage({
                 </div>
                 <div className={styles.commentInfo}>
                   <p className={styles.nickname}>{comment.writer.nickname}</p>
-                  <p className={styles.date}>{comment.createdAt}</p>
+                  <p className={styles.date}>
+                    {formatTimeAgo(comment.createdAt)}
+                  </p>
                 </div>
               </div>
             </div>
