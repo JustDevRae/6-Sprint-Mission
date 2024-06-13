@@ -1,50 +1,50 @@
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import Close from "@/public/images/icons/ic_x.svg";
-import styles from "@/components/ui/FileInput/FileInput.module.css";
+import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Close from '@/public/images/icons/ic_x.svg';
+import styles from '@/components/ui/FileInput/FileInput.module.css';
+
 interface Props {
   name: string;
   value: File | null;
   onChange: (name: string, value: File | null) => void;
 }
 
-export default function FileInput(props: Props) {
-  const [previewImg, setPreviewImg] = useState<string>(""); 
+export default function FileInput({ name, value, onChange }: Props) {
+  const [previewImg, setPreviewImg] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
     const selectImg = e.target.files;
     if (!selectImg || selectImg.length === 0) return;
 
     const nextValue = selectImg[0];
-    props.onChange(props.name, nextValue);
+    onChange(name, nextValue);
   };
 
   const handleDelete = () => {
     const currentImg = inputRef.current;
     if (!currentImg) return;
 
-    currentImg.value = "";
-    props.onChange(props.name, null);
+    currentImg.value = '';
+    onChange(name, null);
   };
 
   useEffect(() => {
-    if (!props.value) return;
+    if (!value) return null || undefined;
 
-    const nextPreviewImg = URL.createObjectURL(props.value);
+    const nextPreviewImg = URL.createObjectURL(value);
     setPreviewImg(nextPreviewImg);
 
     return () => {
-      setPreviewImg(""); 
-      URL.revokeObjectURL(nextPreviewImg); 
+      URL.revokeObjectURL(nextPreviewImg);
     };
-  }, [props.value]);
+  }, [value]);
 
   return (
     <div className={styles.imgAddWrapper}>
       <input
         type="file"
+        id="imgFile"
         accept="images/png, images/jpeg"
         placeholder="이미지 등록"
         onChange={handleChange}
@@ -52,7 +52,7 @@ export default function FileInput(props: Props) {
         className={styles.imgAddInput}
       />
       <div className={styles.previewImgWrapper}>
-        {props.value && (
+        {value && (
           <Image
             src={previewImg}
             alt="미리보기 이미지"
@@ -61,8 +61,12 @@ export default function FileInput(props: Props) {
             height={282}
           />
         )}
-        {props.value && (
-          <button onClick={handleDelete} className={styles.deleteButton}>
+        {value && (
+          <button
+            type="button"
+            onClick={handleDelete}
+            className={styles.deleteButton}
+          >
             <Image src={Close} alt="닫기" />
           </button>
         )}

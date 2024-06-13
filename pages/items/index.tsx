@@ -1,11 +1,11 @@
-import axios from "@/lib/axios";
-import Link from "next/link";
-import SearchForm from "@/components/ui/SearchForm/SearchForm";
-import DropDownButton from "@/components/ui/DropDownButton/DropDownButton";
-import React, { useEffect, useState } from "react";
-import { Product } from "@/types/type";
-import styles from "@/pages/items/MarketPage.module.css";
-import ProductCard from "@/components/ui/ProductCard/ProductCard";
+import axios from '@/lib/axios';
+import Link from 'next/link';
+import SearchForm from '@/components/ui/SearchForm/SearchForm';
+import DropDownButton from '@/components/ui/DropDownButton/DropDownButton';
+import React, { useEffect, useState } from 'react';
+import { Product } from '@/types/type';
+import styles from '@/pages/items/MarketPage.module.css';
+import ProductCard from '@/components/ui/ProductCard/ProductCard';
 
 interface MarketPageProps {
   initBestProducts: Product[];
@@ -14,22 +14,22 @@ interface MarketPageProps {
 
 export async function getServerSideProps() {
   const [bestProductsResponse, allProductsResponse] = await Promise.all([
-    axios.get("products", {
+    axios.get('products', {
       params: {
         pageSize: 4,
-        orderBy: "favorite",
+        orderBy: 'favorite',
       },
     }),
-    axios.get("products", {
+    axios.get('products', {
       params: {
-        orderBy: "recent",
+        orderBy: 'recent',
       },
     }),
   ]);
 
   const bestProductsData = bestProductsResponse.data?.list ?? [];
   const allProductsData = allProductsResponse.data?.list ?? [];
-  
+
   return {
     props: {
       initBestProducts: bestProductsData,
@@ -44,8 +44,8 @@ export default function MarketPage({
 }: MarketPageProps) {
   const [bestProducts, setBestProducts] = useState<Product[]>(initBestProducts);
   const [allProducts, setAllProducts] = useState<Product[]>(initAllProducts);
-  const [orderBy, setOrderBy] = useState("recent");
-  const [inputValue, setInputValue] = useState("");
+  const [orderBy, setOrderBy] = useState('recent');
+  const [inputValue, setInputValue] = useState('');
 
   const handleSortSelection = (selectOrder: string) => {
     setOrderBy(selectOrder);
@@ -58,7 +58,7 @@ export default function MarketPage({
   useEffect(() => {
     const fetchSortedProducts = async () => {
       const response = await axios.get(
-        `products/?orderBy=${orderBy}&keyword=${inputValue}`
+        `products/?orderBy=${orderBy}&keyword=${inputValue}`,
       );
       setAllProducts(response.data.list ?? []);
     };
@@ -90,7 +90,9 @@ export default function MarketPage({
               className={styles.allProductSearchBar}
             />
             <Link href="/additem">
-              <button className={styles.addProductButton}>상품 등록하기</button>
+              <button type="button" className={styles.addProductButton}>
+                상품 등록하기
+              </button>
             </Link>
 
             <DropDownButton onSortSelection={handleSortSelection} />

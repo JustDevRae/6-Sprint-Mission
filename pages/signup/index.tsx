@@ -1,10 +1,10 @@
-import Link from "next/link";
-import Image from "next/image";
-import Logo from "@/public/images/logo/logo.svg";
-import Google from "@/public/images/social/google-logo.png";
-import Kakao from "@/public/images/social/kakao-logo.png";
-import styles from "@/pages/SignPage.module.css";
-import React, { useEffect, useState } from "react";
+import Link from 'next/link';
+import Image from 'next/image';
+import Logo from '@/public/images/logo/logo.svg';
+import Google from '@/public/images/social/google-logo.png';
+import Kakao from '@/public/images/social/kakao-logo.png';
+import styles from '@/pages/SignPage.module.css';
+import React, { useEffect, useState } from 'react';
 
 export default function SignUpPage() {
   return (
@@ -12,23 +12,25 @@ export default function SignUpPage() {
       <Link href="/">
         <Image className={styles.logo} src={Logo} alt="회원가입 페이지 로고" />
       </Link>
-
       <form className={styles.sign_form}>
-        <label>이메일</label>
-        <input type="email" placeholder="이메일을 입력해주세요" />
-
-        <label>닉네임</label>
-        <input type="text" placeholder="닉네임을 입력해주세요" />
-
-        <label>비밀번호</label>
-        <input type="text" placeholder="비밀번호를 입력해주세요" />
-
-        <label>비밀번호 확인</label>
-        <input type="text" placeholder="비밀번호를 다시 한 번 입력해주세요" />
-
-        <button>회원가입</button>
+        <label htmlFor="email">이메일</label>
+        <input type="email" id="email" placeholder="이메일을 입력해주세요" />
+        <label htmlFor="nickname">닉네임</label>
+        <input type="text" id="nickname" placeholder="닉네임을 입력해주세요" />
+        <label htmlFor="password">비밀번호</label>
+        <input
+          type="text"
+          id="password"
+          placeholder="비밀번호를 입력해주세요"
+        />
+        <label htmlFor="checkPassword">비밀번호 확인</label>
+        <input
+          type="text"
+          id="checkPassword"
+          placeholder="비밀번호를 다시 한 번 입력해주세요"
+        />
+        <button type="submit">회원가입</button>
       </form>
-
       <div className={styles.easy_login}>
         <p>간편 로그인하기</p>
         <div className={styles.login_icons}>
@@ -36,7 +38,6 @@ export default function SignUpPage() {
           <Image src={Kakao} alt="카카오톡 로그인" />
         </div>
       </div>
-
       <div className={styles.go_signup}>
         판다마켓이 처음이신가요?
         <Link href="/login">

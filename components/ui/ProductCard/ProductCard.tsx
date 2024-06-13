@@ -1,8 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
-import Heart from "@/public/images/icons/ic_heart.svg";
-import styles from "@/components/ui/ProductCard/ProductCard.module.css";
-import { Product } from "@/types/type";
+import Image from 'next/image';
+import Link from 'next/link';
+import Heart from '@/public/images/icons/ic_heart.svg';
+import styles from '@/components/ui/ProductCard/ProductCard.module.css';
+import { Product } from '@/types/type';
 
 interface ProductCardProps {
   product: Product;
@@ -11,32 +11,34 @@ interface ProductCardProps {
 
 export default function ProductCard({
   product,
-  className = "",
+  className = '',
 }: ProductCardProps) {
   return (
-    <>
-      <Link href={`/items/${product.id}`}>
-        <div className={styles.cardWrapper}>
-          <div className={`${styles.imageWrapper} ${className}`}>
-            <Image
-              src={product.images[0]}
-              alt={product.name}
-              layout="fill"
-              objectFit="cover"
-              priority
-              style={{ borderRadius: 16 }}
-            />
-          </div>
-
-          <p className={styles.name}>{product.name}</p>
-          <p className={styles.price}>{product.price.toLocaleString()}원</p>
-
-          <div className={styles.likeCountWrapper}>
-            <Image src={Heart} alt="좋아요 수" />
-            <p className={styles.favoriteCount}>{product.favoriteCount}</p>
-          </div>
+    <Link href={`/items/${product.id}`}>
+      <div className={styles.cardWrapper}>
+        <div className={`${styles.imageWrapper} ${className}`}>
+          <Image
+            src={product.images[0]}
+            alt={product.name}
+            layout="fill"
+            objectFit="cover"
+            priority
+            style={{ borderRadius: 16 }}
+          />
         </div>
-      </Link>
-    </>
+
+        <p className={styles.name}>{product.name}</p>
+        <p className={styles.price}>
+          {product.price.toLocaleString()}
+          원
+          <br />
+        </p>
+
+        <div className={styles.likeCountWrapper}>
+          <Image src={Heart} alt="좋아요 수" />
+          <p className={styles.favoriteCount}>{product.favoriteCount}</p>
+        </div>
+      </div>
+    </Link>
   );
 }

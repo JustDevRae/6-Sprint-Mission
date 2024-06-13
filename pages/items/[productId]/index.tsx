@@ -1,14 +1,14 @@
-import axios from "@/lib/axios";
-import Link from "next/link";
-import Image from "next/image";
-import { GetServerSidePropsContext } from "next";
-import styles from "@/pages/items/[productId]/ProductDetailPage.module.css";
-import Heart from "@/public/images/icons/ic_heart.svg";
-import Empty from "@/public/images/ui/empty-comments.svg";
-import Back from "@/public/images/icons/ic_back.svg";
-import { useEffect, useState } from "react";
-import { Product, Comment } from "@/types/type";
-import formatTimeAgo from "@/util/formatTimeAgo";
+import axios from '@/lib/axios';
+import Link from 'next/link';
+import Image from 'next/image';
+import { GetServerSidePropsContext } from 'next';
+import styles from '@/pages/items/[productId]/ProductDetailPage.module.css';
+import Heart from '@/public/images/icons/ic_heart.svg';
+import Empty from '@/public/images/ui/empty-comments.svg';
+import Back from '@/public/images/icons/ic_back.svg';
+import { useEffect, useState } from 'react';
+import { Product, Comment } from '@/types/type';
+import formatTimeAgo from '@/util/formatTimeAgo';
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const productId = context.params?.productId as string;
@@ -42,7 +42,7 @@ export default function ProductDetailPage({
   productDetail,
   productComments,
 }: ProductDetailPageProps) {
-  const [value, setValue] = useState<string>("");
+  const [value, setValue] = useState<string>('');
   const [disabled, setDisabled] = useState(true);
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -54,7 +54,7 @@ export default function ProductDetailPage({
   };
 
   useEffect(() => {
-    if (value !== "") {
+    if (value !== '') {
       setDisabled(false);
     } else {
       setDisabled(true);
@@ -78,7 +78,9 @@ export default function ProductDetailPage({
           <div className={styles.detailWrapperHeader}>
             <p className={styles.productName}>{productDetail.name}</p>
             <p className={styles.productPrice}>
-              {productDetail.price.toLocaleString()}원
+              {productDetail.price.toLocaleString()}
+              원
+              <br />
             </p>
           </div>
           <div className={styles.detailWrapperMain}>
@@ -109,14 +111,21 @@ export default function ProductDetailPage({
       </div>
 
       <form onSubmit={handleSubmit} className={styles.questionSection}>
-        <label className={styles.questionLabel}>문의하기</label>
-        <textarea
-          value={value}
-          placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
-          className={styles.questionInput}
-          onChange={handleInput}
-        />
-        <button disabled={disabled} className={styles.registerButton}>
+        <label htmlFor="question" className={styles.questionLabel}>
+          문의하기
+          <textarea
+            id="question"
+            value={value}
+            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 불법 정보 유포시 모니터링 후 삭제될 수 있으며, 이에 대한 민형사상 책임은 게시자에게 있습니다."
+            className={styles.questionInput}
+            onChange={handleInput}
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={disabled}
+          className={styles.registerButton}
+        >
           등록
         </button>
       </form>
@@ -156,7 +165,7 @@ export default function ProductDetailPage({
       )}
 
       <Link href="/items">
-        <button className={styles.backButton}>
+        <button type="button" className={styles.backButton}>
           목록으로 돌아가기
           <Image src={Back} alt="목록으로 돌아가기 버튼" />
         </button>
