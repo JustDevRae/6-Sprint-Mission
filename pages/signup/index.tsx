@@ -8,6 +8,7 @@ import styles from '@/pages/SignPage.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from '@/lib/axios';
+import { useEffect } from 'react';
 
 interface Signup {
   email: string;
@@ -47,6 +48,13 @@ export default function SignUpPage() {
         alert('회원가입실패');
       });
   };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push('/');
+    }
+  }, [router]);
 
   return (
     <div className={styles.sign}>

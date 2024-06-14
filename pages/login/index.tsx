@@ -8,6 +8,7 @@ import styles from '@/pages/SignPage.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from '@/lib/axios';
+import { useEffect } from 'react';
 
 interface Login {
   email: string;
@@ -38,6 +39,13 @@ export default function LogInPage() {
         alert('로그인 실패');
       });
   };
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      router.push('/');
+    }
+  }, [router]);
 
   return (
     <div className={styles.sign}>
