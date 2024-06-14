@@ -20,11 +20,14 @@ interface Login {
 export default function LogInPage() {
   const {
     register,
+    watch,
     handleSubmit,
     formState: { errors },
   } = useForm<Login>({ mode: 'onBlur' });
   const router = useRouter();
   const [showedPW, SetShowedPW] = useState<boolean>(false);
+  const formValues = watch();
+  const isFormValid = formValues.email && formValues.password;
 
   const onSubmit: SubmitHandler<Login> = async ({ email, password }: Login) => {
     await axios
@@ -71,6 +74,7 @@ export default function LogInPage() {
             type="email"
             id="email"
             placeholder="이메일을 입력해주세요"
+            className={errors.email ? styles.error_outline : ''}
           />
           {errors?.email?.message && (
             <p className={styles.error}>{errors?.email?.message}</p>
@@ -86,6 +90,7 @@ export default function LogInPage() {
             type={showedPW ? 'text' : 'password'}
             id="password"
             placeholder="비밀번호를 입력해주세요"
+            className={errors.password ? styles.error_outline : ''}
           />
           {showedPW ? (
             <Image
@@ -115,7 +120,9 @@ export default function LogInPage() {
           )}
         </div>
 
-        <button type="submit">로그인</button>
+        <button type="submit" disabled={!isFormValid}>
+          로그인
+        </button>
       </form>
 
       <div className={styles.easy_login}>

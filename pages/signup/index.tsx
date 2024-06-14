@@ -28,8 +28,13 @@ export default function SignUpPage() {
   } = useForm<Signup>({ mode: 'onBlur' });
   const [showedPW, SetShowedPW] = useState<boolean>(false);
   const [showedPWCheck, SetShowedPWCheck] = useState<boolean>(false);
-  const pwCheck = watch('password');
   const router = useRouter();
+  const formValues = watch();
+  const isFormValid =
+    formValues.email &&
+    formValues.nickname &&
+    formValues.password &&
+    formValues.passwordConfirmation;
 
   const onSubmit: SubmitHandler<Signup> = async ({
     email,
@@ -82,6 +87,7 @@ export default function SignUpPage() {
             type="email"
             id="email"
             placeholder="이메일을 입력해주세요"
+            className={errors.email ? styles.error_outline : ''}
           />
           {errors?.email?.message && (
             <p className={styles.error}>{errors?.email?.message}</p>
@@ -97,6 +103,7 @@ export default function SignUpPage() {
             type="text"
             id="nickname"
             placeholder="닉네임을 입력해주세요"
+            className={errors.nickname ? styles.error_outline : ''}
           />
           {errors?.nickname?.message && (
             <p className={styles.error}>{errors?.nickname?.message}</p>
@@ -113,6 +120,7 @@ export default function SignUpPage() {
             type={showedPW ? 'text' : 'password'}
             id="password"
             placeholder="비밀번호를 입력해주세요"
+            className={errors.password ? styles.error_outline : ''}
           />
           {showedPW ? (
             <Image
@@ -147,11 +155,12 @@ export default function SignUpPage() {
           <input
             {...register('passwordConfirmation', {
               required: '비밀번호를 다시 한 번 입력해주세요',
-              validate: (value) => value === pwCheck,
+              validate: (value) => value === formValues.passwordConfirmation,
             })}
             type={showedPWCheck ? 'text' : 'password'}
             id="checkpassword"
             placeholder="비밀번호를 다시 한 번 입력해주세요"
+            className={errors.passwordConfirmation ? styles.error_outline : ''}
           />
           {showedPWCheck ? (
             <Image
@@ -186,7 +195,9 @@ export default function SignUpPage() {
           )}
         </div>
 
-        <button type="submit">회원가입</button>
+        <button type="submit" disabled={!isFormValid}>
+          회원가입
+        </button>
       </form>
       <div className={styles.easy_login}>
         <p>간편 로그인하기</p>

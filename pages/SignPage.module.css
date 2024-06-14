@@ -122,3 +122,7 @@
   right: 24px;
   cursor: pointer;
 }
+
+.error_outline {
+  outline: 1px solid red;
+}
