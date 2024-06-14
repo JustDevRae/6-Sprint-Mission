@@ -17,11 +17,9 @@ interface Login {
 export default function LogInPage() {
   const {
     register,
-    // watch,
     handleSubmit,
     formState: { errors },
   } = useForm<Login>({ mode: 'onBlur' });
-  // const pwCheck = watch('password');
   const router = useRouter();
 
   const onSubmit: SubmitHandler<Login> = async ({ email, password }: Login) => {
@@ -35,7 +33,7 @@ export default function LogInPage() {
         localStorage.setItem('accessToken', accessToken);
         alert('로그인 성공');
         router.push('/');
-      }) 
+      })
       .catch(() => {
         alert('로그인 실패');
       });

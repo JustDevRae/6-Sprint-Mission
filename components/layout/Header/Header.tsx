@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
@@ -10,14 +11,22 @@ export default function Header() {
   const [hasAccessToken, setHasAccessToken] = useState<boolean>(false);
   const router = useRouter();
 
-  useEffect(() => {
+  const checkAccessToken = () => {
     const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      setHasAccessToken(true);
-    } else {
-      setHasAccessToken(false);
-    }
+    setHasAccessToken(!!accessToken);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    checkAccessToken();
+    alert('로그아웃 성공');
+    router.push('/');
+  };
+
+  useEffect(() => {
+    checkAccessToken();
   }, []);
+
   return (
     <header className={styles.header}>
       <div className={styles.nav}>
@@ -48,7 +57,11 @@ export default function Header() {
       </div>
 
       {hasAccessToken ? (
-        <button type="button" style={{ backgroundColor: '#fff' }}>
+        <button
+          type="button"
+          style={{ backgroundColor: '#fff' }}
+          onClick={handleLogout}
+        >
           <Image src={Profile} alt="프로필아이콘" width={40} height={40} />
         </button>
       ) : (
