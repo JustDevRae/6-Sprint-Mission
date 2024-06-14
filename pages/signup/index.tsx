@@ -4,11 +4,13 @@ import Image from 'next/image';
 import Logo from '@/public/images/logo/logo.svg';
 import Google from '@/public/images/social/google-logo.png';
 import Kakao from '@/public/images/social/kakao-logo.png';
+import Eyes from '@/public/images/icons/eye-visible.svg';
+import NoEyes from '@/public/images/icons/eye-invisible.svg';
 import styles from '@/pages/SignPage.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from '@/lib/axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 interface Signup {
   email: string;
@@ -24,6 +26,8 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<Signup>({ mode: 'onBlur' });
+  const [showedPW, SetShowedPW] = useState<boolean>(false);
+  const [showedPWCheck, SetShowedPWCheck] = useState<boolean>(false);
   const pwCheck = watch('password');
   const router = useRouter();
 
@@ -106,10 +110,33 @@ export default function SignUpPage() {
               required: '비밀번호를 입력해주세요',
               minLength: { value: 8, message: '8자리 이상 입력해주세요' },
             })}
-            type="text"
+            type={showedPW ? 'text' : 'password'}
             id="password"
             placeholder="비밀번호를 입력해주세요"
           />
+          {showedPW ? (
+            <Image
+              src={Eyes}
+              alt="보이기"
+              width={24}
+              height={24}
+              className={styles.eyes}
+              onClick={() => {
+                SetShowedPW(!showedPW);
+              }}
+            />
+          ) : (
+            <Image
+              src={NoEyes}
+              alt="보이기"
+              width={24}
+              height={24}
+              className={styles.eyes}
+              onClick={() => {
+                SetShowedPW(!showedPW);
+              }}
+            />
+          )}
           {errors?.password?.message && (
             <p className={styles.error}>{errors?.password?.message}</p>
           )}
@@ -122,10 +149,33 @@ export default function SignUpPage() {
               required: '비밀번호를 다시 한 번 입력해주세요',
               validate: (value) => value === pwCheck,
             })}
-            type="text"
+            type={showedPWCheck ? 'text' : 'password'}
             id="checkpassword"
             placeholder="비밀번호를 다시 한 번 입력해주세요"
           />
+          {showedPWCheck ? (
+            <Image
+              src={Eyes}
+              alt="보이기"
+              width={24}
+              height={24}
+              className={styles.eyes}
+              onClick={() => {
+                SetShowedPWCheck(!showedPWCheck);
+              }}
+            />
+          ) : (
+            <Image
+              src={NoEyes}
+              alt="보이기"
+              width={24}
+              height={24}
+              className={styles.eyes}
+              onClick={() => {
+                SetShowedPWCheck(!showedPWCheck);
+              }}
+            />
+          )}
           {errors?.passwordConfirmation?.message && (
             <p className={styles.error}>
               {errors?.passwordConfirmation?.message}

@@ -15,7 +15,7 @@
   flex-direction: column;
 }
 
-.inputWrapper{
+.inputWrapper {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -114,4 +114,11 @@
   font-weight: 600;
   line-height: 18px;
   color: var(--color-red);
+}
+
+.eyes {
+  position: absolute;
+  top: 53px;
+  right: 24px;
+  cursor: pointer;
 }
