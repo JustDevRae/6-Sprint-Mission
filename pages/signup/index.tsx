@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/public/images/logo/logo.svg';
@@ -5,13 +6,14 @@ import Google from '@/public/images/social/google-logo.png';
 import Kakao from '@/public/images/social/kakao-logo.png';
 import styles from '@/pages/SignPage.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useRef } from 'react';
+import { useRouter } from 'next/router';
+import axios from '@/lib/axios';
 
 interface Signup {
   email: string;
   nickname: string;
   password: string;
-  checkpassword: string;
+  passwordConfirmation: string;
 }
 
 export default function SignUpPage() {
@@ -21,12 +23,29 @@ export default function SignUpPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<Signup>({ mode: 'onBlur' });
+  const pwCheck = watch('password');
+  const router = useRouter();
 
-  const password = useRef<string>();
-  password.current = watch('password');
-
-  const onSubmit: SubmitHandler<Signup> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<Signup> = async ({
+    email,
+    nickname,
+    password,
+    passwordConfirmation,
+  }: Signup) => {
+    await axios
+      .post('auth/signUp', {
+        email,
+        nickname,
+        password,
+        passwordConfirmation,
+      })
+      .then(() => {
+        alert('회원가입성공');
+        router.replace('/login');
+      })
+      .catch(() => {
+        alert('회원가입실패');
+      });
   };
 
   return (
@@ -59,7 +78,6 @@ export default function SignUpPage() {
 
         <div className={styles.inputWrapper}>
           <label htmlFor="nickname">닉네임</label>
-
           <input
             {...register('nickname', {
               required: '닉네임을 입력해주세요',
@@ -92,18 +110,20 @@ export default function SignUpPage() {
         <div className={styles.inputWrapper}>
           <label htmlFor="checkpassword">비밀번호 확인</label>
           <input
-            {...register('checkpassword', {
+            {...register('passwordConfirmation', {
               required: '비밀번호를 다시 한 번 입력해주세요',
-              validate: (value) => value === password.current,
+              validate: (value) => value === pwCheck,
             })}
             type="text"
             id="checkpassword"
             placeholder="비밀번호를 다시 한 번 입력해주세요"
           />
-          {errors?.checkpassword?.message && (
-            <p className={styles.error}>{errors?.checkpassword?.message}</p>
+          {errors?.passwordConfirmation?.message && (
+            <p className={styles.error}>
+              {errors?.passwordConfirmation?.message}
+            </p>
           )}
-          {errors?.checkpassword?.type === 'validate' && (
+          {errors?.passwordConfirmation?.type === 'validate' && (
             <p className={styles.error}>비밀번호가 일치하지 않습니다</p>
           )}
         </div>
