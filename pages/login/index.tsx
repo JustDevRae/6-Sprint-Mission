@@ -1,10 +1,13 @@
+/* eslint-disable no-alert */
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/public/images/logo/logo.svg';
 import Google from '@/public/images/social/google-logo.png';
 import Kakao from '@/public/images/social/kakao-logo.png';
 import styles from '@/pages/SignPage.module.css';
-import React, { useEffect, useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useRouter } from 'next/router';
+import axios from '@/lib/axios';
 
 interface Login {
   email: string;
@@ -12,106 +15,31 @@ interface Login {
 }
 
 export default function LogInPage() {
-  const [isDisaled, setIsDisabled] = useState(true);
-  const [errorMessages, setErrorMessages] = useState<Login>({
-    email: '',
-    password: '',
-  });
-  const [inputValues, setLoginInput] = useState<Login>({
-    email: '',
-    password: '',
-  });
+  const {
+    register,
+    // watch,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Login>({ mode: 'onBlur' });
+  // const pwCheck = watch('password');
+  const router = useRouter();
 
-  // input태그에 값을 입력시 호출할 핸들러
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    const { email, password } = inputValues;
-    setLoginInput((prevValues) => ({
-      ...prevValues,
-      [name]: value,
-    }));
-
-    if (e.target.name === 'email') {
-      if (email.includes('@')) {
-        setErrorMessages((prevError) => ({
-          ...prevError,
-          [e.target.name]: '',
-        }));
-      }
-    }
-
-    if (e.target.name === 'password') {
-      if (password.length >= 7) {
-        setErrorMessages((prevError) => ({
-          ...prevError,
-          [e.target.name]: '',
-        }));
-      }
-    }
+  const onSubmit: SubmitHandler<Login> = async ({ email, password }: Login) => {
+    await axios
+      .post('auth/signIn', {
+        email,
+        password,
+      })
+      .then((response) => {
+        const accessToken = response.data?.accessToken;
+        localStorage.setItem('accessToken', accessToken);
+        alert('로그인 성공');
+        router.push('/');
+      }) 
+      .catch(() => {
+        alert('로그인 실패');
+      });
   };
-
-  // focusout이 발생한 이벤트 객체의 name이 email일 때 호출할 핸들러
-  const handleEmailValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputValues.email.trim() === '') {
-      setErrorMessages((prevError) => ({
-        ...prevError,
-        [e.target.name]: '이메일을 입력해주세요',
-      }));
-    } else if (!inputValues.email.includes('@')) {
-      setErrorMessages((prevError) => ({
-        ...prevError,
-        [e.target.name]: '잘못된 이메일 형식입니다',
-      }));
-    } else {
-      setErrorMessages((prevError) => ({
-        ...prevError,
-        [e.target.name]: '',
-      }));
-    }
-  };
-
-  // focusout이 발생한 이벤트 객체의 name이 password일 때 호출할 핸들러
-  const handlePWlValidation = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (inputValues.password.trim() === '') {
-      setErrorMessages((prevError) => ({
-        ...prevError,
-        [e.target.name]: '비밀번호를 입력해주세요',
-      }));
-    } else if (inputValues.password.length < 8) {
-      setErrorMessages((prevError) => ({
-        ...prevError,
-        [e.target.name]: '비밀번호를 8자 이상 입력해주세요',
-      }));
-    } else {
-      setErrorMessages((prevError) => ({
-        ...prevError,
-        [e.target.name]: '',
-      }));
-    }
-  };
-
-  // input 태그 focusout 시 호출할 핸들러
-  const handleOnBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.name === 'email') {
-      handleEmailValidation(e);
-    }
-    if (e.target.name === 'password') {
-      handlePWlValidation(e);
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
-
-  useEffect(() => {
-    const { email, password } = inputValues;
-    if (email.includes('@') && password.length >= 8) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-  }, [inputValues]);
 
   return (
     <div className={styles.sign}>
@@ -119,51 +47,43 @@ export default function LogInPage() {
         <Image className={styles.logo} src={Logo} alt="로그인 페이지 로고" />
       </Link>
 
-      <form onSubmit={handleSubmit} className={styles.sign_form}>
-        <label htmlFor="email">이메일</label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          value={inputValues.email}
-          placeholder="이메일을 입력해주세요"
-          onChange={handleInput}
-          onBlur={handleOnBlur}
-          style={{
-            outline:
-              errorMessages.email !== ''
-                ? '1px solid var(--color-red)'
-                : '1px solid #3182f6',
-          }}
-        />
+      <form onSubmit={handleSubmit(onSubmit)} className={styles.sign_form}>
+        <div className={styles.inputWrapper}>
+          <label htmlFor="email">이메일</label>
+          <input
+            /* eslint-disable react/jsx-props-no-spreading */
+            {...register('email', {
+              required: { value: true, message: '이메일을 입력해주세요' },
+              pattern: {
+                value: /^\S+@\S+$/i,
+                message: '잘못된 이메일 형식입니다',
+              },
+            })}
+            type="email"
+            id="email"
+            placeholder="이메일을 입력해주세요"
+          />
+          {errors?.email?.message && (
+            <p className={styles.error}>{errors?.email?.message}</p>
+          )}
+        </div>
+        <div className={styles.inputWrapper}>
+          <label htmlFor="password">비밀번호</label>
+          <input
+            {...register('password', {
+              required: '비밀번호를 입력해주세요',
+              minLength: { value: 8, message: '8자리 이상 입력해주세요' },
+            })}
+            type="text"
+            id="password"
+            placeholder="비밀번호를 입력해주세요"
+          />
+          {errors?.password?.message && (
+            <p className={styles.error}>{errors?.password?.message}</p>
+          )}
+        </div>
 
-        {errorMessages.email && (
-          <p className={styles.error}>{errorMessages.email}</p>
-        )}
-
-        <label htmlFor="password">비밀번호</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          value={inputValues.password}
-          placeholder="비밀번호를 입력해주세요"
-          onChange={handleInput}
-          onBlur={handleOnBlur}
-          style={{
-            outline: errorMessages.password
-              ? '1px solid var(--color-red)'
-              : '1px solid #3182f6',
-          }}
-        />
-
-        {errorMessages.password && (
-          <p className={styles.error}>{errorMessages.password}</p>
-        )}
-
-        <button type="submit" disabled={isDisaled}>
-          로그인
-        </button>
+        <button type="submit">로그인</button>
       </form>
 
       <div className={styles.easy_login}>
