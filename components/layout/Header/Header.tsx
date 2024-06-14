@@ -1,12 +1,23 @@
-import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from '@/components/layout/Header/Header.module.css';
 import Logo from '@/public/images/logo/logo.svg';
+import Profile from '@/public/images/icons/ic_profile.svg';
+import React, { useEffect, useState } from 'react';
 
 export default function Header() {
+  const [hasAccessToken, setHasAccessToken] = useState<boolean>(false);
   const router = useRouter();
+
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      setHasAccessToken(true);
+    } else {
+      setHasAccessToken(false);
+    }
+  }, []);
   return (
     <header className={styles.header}>
       <div className={styles.nav}>
@@ -36,11 +47,17 @@ export default function Header() {
         </Link>
       </div>
 
-      <Link href="/login">
-        <button type="button" className={styles.login_button}>
-          로그인
+      {hasAccessToken ? (
+        <button type="button" style={{ backgroundColor: '#fff' }}>
+          <Image src={Profile} alt="프로필아이콘" width={40} height={40} />
         </button>
-      </Link>
+      ) : (
+        <Link href="/login">
+          <button type="button" className={styles.login_button}>
+            로그인
+          </button>
+        </Link>
+      )}
     </header>
   );
 }
