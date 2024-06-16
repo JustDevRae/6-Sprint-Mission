@@ -1,11 +1,10 @@
 /* eslint-disable no-alert */
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import Image from 'next/image';
-import styles from '@/components/layout/Header/Header.module.css';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import Logo from '@/public/images/logo/logo.svg';
 import Profile from '@/public/images/icons/ic_profile.svg';
-import React, { useEffect, useState } from 'react';
 
 export default function Header() {
   const [hasAccessToken, setHasAccessToken] = useState<boolean>(false);
@@ -28,16 +27,16 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={styles.header}>
-      <div className={styles.nav}>
+    <header className="sticky top-0 left-0 z-50 flex items-center justify-between w-full h-16 bg-white border-solid border-b-gray-400 border-b-[1px] px-[200px]">
+      <div className="flex items-center gap-[46px]">
         <Link href="/">
           <Image src={Logo} alt="판다마켓 로고" />
         </Link>
 
         <Link href="/boards">
           <span
-            className={`${styles.navLink} ${
-              router.pathname === '/boards' ? styles.navLinkActive : ''
+            className={`${'text-lg text-gray-600 font-bold '} ${
+              router.pathname === '/boards' ? 'text-blue-active' : ''
             }`}
           >
             자유게시판
@@ -45,9 +44,9 @@ export default function Header() {
         </Link>
         <Link href="/items">
           <span
-            className={`${styles.navLink} ${
+            className={`${'text-lg text-gray-600 font-bold '} ${
               router.pathname === '/items' || router.pathname === '/additem'
-                ? styles.navLinkActive
+                ? 'text-blue-active'
                 : ''
             }`}
           >
@@ -66,7 +65,10 @@ export default function Header() {
         </button>
       ) : (
         <Link href="/login">
-          <button type="button" className={styles.login_button}>
+          <button
+            type="button"
+            className="w-[128px] h-[48px] bg-blue-active rounded-lg text-base font-semibold text-white hover:bg-blue-hover"
+          >
             로그인
           </button>
         </Link>
