@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import type { AppProps } from 'next/app';
 import Header from '@/components/layout/Header/Header';
 import Container from '@/components/layout/Container/Container';
@@ -13,7 +14,6 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       {showHeader && <Header />}
       <Container>
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Component {...pageProps} />
       </Container>
     </>

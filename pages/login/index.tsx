@@ -1,4 +1,5 @@
 /* eslint-disable no-alert */
+/* eslint-disable react/jsx-props-no-spreading */
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/public/images/logo/logo.svg';
@@ -63,7 +64,6 @@ export default function LogInPage() {
         <div className={styles.inputWrapper}>
           <label htmlFor="email">이메일</label>
           <input
-            /* eslint-disable react/jsx-props-no-spreading */
             {...register('email', {
               required: { value: true, message: '이메일을 입력해주세요' },
               pattern: {

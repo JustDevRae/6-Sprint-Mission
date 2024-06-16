@@ -1,4 +1,5 @@
 /* eslint-disable no-alert */
+/* eslint-disable react/jsx-props-no-spreading */
 import Link from 'next/link';
 import Image from 'next/image';
 import Logo from '@/public/images/logo/logo.svg';
@@ -25,7 +26,7 @@ export default function SignUpPage() {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<Signup>({ mode: 'onBlur' });
+  } = useForm<Signup>({ mode: 'all' });
   const [showedPW, SetShowedPW] = useState<boolean>(false);
   const [showedPWCheck, SetShowedPWCheck] = useState<boolean>(false);
   const router = useRouter();
@@ -76,7 +77,6 @@ export default function SignUpPage() {
           <label htmlFor="email">이메일</label>
 
           <input
-            /* eslint-disable react/jsx-props-no-spreading */
             {...register('email', {
               required: { value: true, message: '이메일을 입력해주세요' },
               pattern: {
