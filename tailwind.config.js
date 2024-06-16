@@ -27,6 +27,8 @@ module.exports = {
         red: {
           error: '#F74747',
         },
+        banner: '#cfe5ff',
+        footer: '#111322',
       },
       fontFamily: {
         sans: ['Pretendard', 'sans-serif'],

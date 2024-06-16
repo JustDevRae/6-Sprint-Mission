@@ -27,7 +27,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 left-0 z-50 flex items-center justify-between w-full h-16 bg-white border-solid border-b-gray-400 border-b-[1px] px-[200px]">
+    <header className="sticky left-0 top-0 z-50 flex h-16 w-full items-center justify-between border-b-[1px] border-solid border-b-gray-400 bg-white px-[200px]">
       <div className="flex items-center gap-[46px]">
         <Link href="/">
           <Image src={Logo} alt="판다마켓 로고" />
@@ -35,7 +35,7 @@ export default function Header() {
 
         <Link href="/boards">
           <span
-            className={`${'text-lg text-gray-600 font-bold '} ${
+            className={`${'text-lg font-bold text-gray-600'} ${
               router.pathname === '/boards' ? 'text-blue-active' : ''
             }`}
           >
@@ -44,7 +44,7 @@ export default function Header() {
         </Link>
         <Link href="/items">
           <span
-            className={`${'text-lg text-gray-600 font-bold '} ${
+            className={`${'text-lg font-bold text-gray-600'} ${
               router.pathname === '/items' || router.pathname === '/additem'
                 ? 'text-blue-active'
                 : ''
@@ -67,7 +67,7 @@ export default function Header() {
         <Link href="/login">
           <button
             type="button"
-            className="w-[128px] h-[48px] bg-blue-active rounded-lg text-base font-semibold text-white hover:bg-blue-hover"
+            className="h-[48px] w-[128px] rounded-lg bg-blue-active text-base font-semibold text-white hover:bg-blue-hover"
           >
             로그인
           </button>
