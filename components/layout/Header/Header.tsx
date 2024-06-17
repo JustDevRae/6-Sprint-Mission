@@ -35,8 +35,10 @@ export default function Header() {
 
         <Link href="/boards">
           <span
-            className={`${'text-lg font-bold text-gray-600'} ${
-              router.pathname === '/boards' ? 'text-blue-active' : ''
+            className={`${'text-lg font-bold'} ${
+              router.pathname === '/boards'
+                ? 'text-blue-active'
+                : 'text-gray-600'
             }`}
           >
             자유게시판
@@ -44,10 +46,11 @@ export default function Header() {
         </Link>
         <Link href="/items">
           <span
-            className={`${'text-lg font-bold text-gray-600'} ${
-              router.pathname === '/items' || router.pathname === '/additem'
+            className={`${'text-lg font-bold'} ${
+              router.pathname.includes('/items') ||
+              router.pathname === '/additem'
                 ? 'text-blue-active'
-                : ''
+                : 'text-gray-600'
             }`}
           >
             중고마켓
