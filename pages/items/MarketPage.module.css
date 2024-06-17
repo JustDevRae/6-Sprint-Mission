@@ -1,0 +1,81 @@
+.bestProductsContainer {
+  width: 1200px;
+  margin: 24px 0 40px;
+}
+
+.bestProductTitle {
+  margin-bottom: 16px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--color-gray900);
+}
+
+.bestProductsList {
+  display: flex;
+  gap: 24px;
+}
+
+.bestProductImage {
+  width: 282px;
+  height: 282px;
+}
+
+.allProductContainer {
+  width: 1200px;
+  margin-bottom: 40px;
+}
+
+.allProductHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.allProductHeaderRight {
+  display: flex;
+  gap: 12px;
+}
+
+.allProductTitle {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 28px;
+  color: var(--color-gray900);
+}
+
+.addProductButton {
+  width: 133px;
+  height: 42px;
+  background-color: var(--color-blue);
+
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 19px;
+  color: #fff;
+}
+
+.addProductButton:hover {
+  background-color: #1251aa;
+  cursor: pointer;
+}
+
+.allProductList {
+  display: grid;
+  row-gap: 40px;
+  column-gap: 24px;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.allProductImage {
+  width: 221px;
+  height: 221px;
+}
+
+.allProductSearchBar {
+  width: 332px;
+  height: 42px;
+}

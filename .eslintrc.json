@@ -1,3 +1,52 @@
 {
-  "extends": "next/core-web-vitals"
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "@typescript-eslint", "prettier", "jsx-a11y"],
+  "rules": {
+    "quotes": ["error", "single"],
+    "object-curly-newline": [
+      "error",
+      { "multiline": true, "consistent": true }
+    ],
+    "linebreak-style": ["error", "unix"],
+    "operator-linebreak": [
+      "error",
+      "after",
+      {
+        "overrides": {
+          "&&": "after",
+          "?": "before",
+          ":": "before"
+        }
+      }
+    ],
+    "prettier/prettier": ["error", { "endOfLine": "lf", "singleQuote": true }],
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "jsx-a11y/label-has-associated-control": [
+      "error",
+      {
+        "required": {
+          "some": ["id"]
+        }
+      }
+    ]
+  }
 }

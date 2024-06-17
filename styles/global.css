@@ -1,7 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-sans;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
+:root {
+  --color-white: #ffffff;
+  --color-blue: #3692ff;
+  --color-red: #f74747;
+  --color-gray50: #f9fafb;
+  --color-gray100: #f3f4f6;
+  --color-gray200: #e5e7eb;
+
+  --color-gray400: #9ca3af;
+  --color-gray500: #6b7280;
+  --color-gray600: #4b5563;
+  --color-gray800: #1f2937;
+  --color-gray900: ;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+input,
+button,
+textarea {
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
