@@ -7,7 +7,6 @@ import Google from '@/public/images/social/google-logo.png';
 import Kakao from '@/public/images/social/kakao-logo.png';
 import Eyes from '@/public/images/icons/eye-visible.svg';
 import NoEyes from '@/public/images/icons/eye-invisible.svg';
-import styles from '@/pages/SignPage.module.css';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useRouter } from 'next/router';
 import axios from '@/lib/axios';
@@ -55,14 +54,23 @@ export default function LogInPage() {
   }, [router]);
 
   return (
-    <div className={styles.sign}>
+    <div className="flex flex-col items-center">
       <Link href="/">
-        <Image className={styles.logo} src={Logo} alt="로그인 페이지 로고" />
+        <Image
+          className="mb-[40px] mt-[60px] h-[132px] w-[396px]"
+          src={Logo}
+          alt="로그인 페이지 로고"
+        />
       </Link>
 
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.sign_form}>
-        <div className={styles.inputWrapper}>
-          <label htmlFor="email">이메일</label>
+      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
+        <div className="relative flex flex-col">
+          <label
+            htmlFor="email"
+            className="mb-[16px] text-[18px] font-bold leading-[21px]"
+          >
+            이메일
+          </label>
           <input
             {...register('email', {
               required: { value: true, message: '이메일을 입력해주세요' },
@@ -74,14 +82,21 @@ export default function LogInPage() {
             type="email"
             id="email"
             placeholder="이메일을 입력해주세요"
-            className={errors.email ? styles.error_outline : ''}
+            className={`mb-[30px] h-[56px] w-[640px] rounded-[12px] bg-gray-200 px-[24px] py-[16px] text-[16px] font-normal leading-[24px] outline-none outline-offset-0 ${errors.email ? 'outline-red-error' : 'outline-blue-active'}`}
           />
           {errors?.email?.message && (
-            <p className={styles.error}>{errors?.email?.message}</p>
+            <p className="absolute left-[10px] top-[100px] mr-[8px] text-[15px] font-semibold leading-[18px] text-red-error">
+              {errors?.email?.message}
+            </p>
           )}
         </div>
-        <div className={styles.inputWrapper}>
-          <label htmlFor="password">비밀번호</label>
+        <div className="relative flex flex-col">
+          <label
+            htmlFor="password"
+            className="mb-[16px] text-[18px] font-bold leading-[21px]"
+          >
+            비밀번호
+          </label>
           <input
             {...register('password', {
               required: '비밀번호를 입력해주세요',
@@ -90,7 +105,7 @@ export default function LogInPage() {
             type={showedPW ? 'text' : 'password'}
             id="password"
             placeholder="비밀번호를 입력해주세요"
-            className={errors.password ? styles.error_outline : ''}
+            className={`mb-[30px] h-[56px] w-[640px] rounded-[12px] bg-gray-200 px-[24px] py-[16px] text-[16px] font-normal leading-[24px] outline-none outline-offset-0 ${errors.password ? 'outline-red-error' : 'outline-blue-active'}`}
           />
           {showedPW ? (
             <Image
@@ -98,7 +113,7 @@ export default function LogInPage() {
               alt="보이기"
               width={24}
               height={24}
-              className={styles.eyes}
+              className="absolute right-[24px] top-[53px] cursor-pointer"
               onClick={() => {
                 SetShowedPW(!showedPW);
               }}
@@ -109,34 +124,42 @@ export default function LogInPage() {
               alt="보이기"
               width={24}
               height={24}
-              className={styles.eyes}
+              className="absolute right-[24px] top-[53px] cursor-pointer"
               onClick={() => {
                 SetShowedPW(!showedPW);
               }}
             />
           )}
           {errors?.password?.message && (
-            <p className={styles.error}>{errors?.password?.message}</p>
+            <p className="absolute left-[10px] top-[100px] mr-[8px] text-[15px] font-semibold leading-[18px] text-red-error">
+              {errors?.password?.message}
+            </p>
           )}
         </div>
 
-        <button type="submit" disabled={!isFormValid}>
+        <button
+          type="submit"
+          disabled={!isFormValid}
+          className="hover: h-[56px] w-[640px] cursor-pointer rounded-[40px] bg-blue-active text-[20px] font-semibold leading-[24px] text-white hover:bg-blue-hover disabled:bg-gray-400"
+        >
           로그인
         </button>
       </form>
 
-      <div className={styles.easy_login}>
-        <p>간편 로그인하기</p>
-        <div className={styles.login_icons}>
-          <Image src={Google} alt="구글 로그인" />
-          <Image src={Kakao} alt="카카오톡 로그인" />
+      <div className="my-[24px] flex h-[74px] w-[640px] items-center justify-between rounded-[8px] bg-[#e6f2ff] px-[23px] py-[16px]">
+        <p className="text-[16px] font-medium leading-[24px] text-gray-800">
+          간편 로그인하기
+        </p>
+        <div className="flex gap-[16px]">
+          <Image src={Google} alt="구글 로그인" width={42} height={42} />
+          <Image src={Kakao} alt="카카오톡 로그인" width={42} height={42} />
         </div>
       </div>
 
-      <div className={styles.go_signup}>
+      <div className="text-[15px] font-medium leading-[18px]">
         판다마켓이 처음이신가요?
         <Link href="/signup">
-          <span>회원가입</span>
+          <span className="text-[#3182f6]">회원가입</span>
         </Link>
       </div>
     </div>
