@@ -8,7 +8,7 @@ import '@/styles/reset.css';
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const disableHeader = ['/login', '/signup'];
+  const disableHeader = ['/login', '/signup', '/404'];
   const showHeader = !disableHeader.includes(router.pathname);
   return (
     <>
